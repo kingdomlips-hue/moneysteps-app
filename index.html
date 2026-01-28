@@ -138,7 +138,7 @@ function unlockPremium() {
   document.querySelectorAll('.locked').forEach(card => {
     card.classList.remove('locked');
   });
-
+document.getElementById('premiumContent').style.display = 'block';
   alert('Premium Unlocked! 🎉');
 }
 
@@ -146,6 +146,7 @@ window.onload = function () {
   if (localStorage.getItem('premiumUnlocked') === 'yes') {
     document.querySelectorAll('.locked').forEach(card => {
       card.classList.remove('locked');
+      document.getElementById('premiumContent').style.display = 'block';
     });
   }
 };
