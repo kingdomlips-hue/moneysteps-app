@@ -1,12 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MoneySteps</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MoneySteps</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #111;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    section {
+      padding: 20px;
+    }
+    .card {
+      background: #fff;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .locked {
+      opacity: 0.5;
+    }
+    button {
+      background: #111;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>💰 MoneySteps</h1>
+  <p>Daily steps to build income — one action at a time</p>
+</header>
+
+<section>
+  <div class="card">
+    <h3>Step 1: Income Mindset</h3>
+    <p>Understand how money really works and why most people stay broke.</p>
+  </div>
+
+  <div class="card">
+    <h3>Step 2: Pick ONE Income Skill</h3>
+    <p>Stop chasing everything. Choose one skill that pays.</p>
+  </div>
+
+  <div class="card locked">
+    <h3>🔒 Step 3: Your First $10 Online</h3>
+    <p>Locked — Upgrade to unlock practical steps.</p>
+    <button>Unlock Premium</button>
+  </div>
+
+  <div class="card locked">
+    <h3>🔒 Step 4: Daily Money Routine</h3>
+    <p>Locked — Learn the system that compounds income.</p>
+    <button>Unlock Premium</button>
+  </div>
+</section>
+
+<footer>
+  © 2026 MoneySteps • Built for beginners
+</footer>
+
+</body>
 </html>
