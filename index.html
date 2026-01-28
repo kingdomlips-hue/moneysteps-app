@@ -114,24 +114,30 @@
 </footer>
 
   
+
+
+  
   <script>
 function unlockPremium() {
+  localStorage.setItem('premiumUnlocked', 'yes');
+
   document.querySelectorAll('.locked').forEach(card => {
     card.classList.remove('locked');
   });
 
-  document.querySelectorAll('.lock-icon').forEach(icon => {
-    icon.style.display = 'none';
-  });
-
-  document.querySelectorAll('.unlock-btn').forEach(btn => {
-    btn.style.display = 'none';
-  });
-
   alert('Premium Unlocked! 🎉');
 }
+
+window.onload = function () {
+  if (localStorage.getItem('premiumUnlocked') === 'yes') {
+    document.querySelectorAll('.locked').forEach(card => {
+      card.classList.remove('locked');
+    });
+  }
+};
 </script>
-    
+
+
     
   
   
