@@ -100,6 +100,13 @@
 <footer>
   © 2026 MoneySteps • Built for beginners
 </footer>
-
+<script>
+  function unlockPremium() {
+    document.querySelectorAll('.locked').forEach(card => {
+      card.classList.remove('locked');
+    });
+    alert('Premium Unlocked! 🎉');
+  }
+</script>
 </body>
 </html>
