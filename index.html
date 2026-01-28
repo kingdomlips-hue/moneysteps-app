@@ -44,6 +44,18 @@
       font-size: 14px;
       color: #777;
     }
+    .locked {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.locked h3::before {
+  content: "🔒 ";
+}
+
+.unlocked {
+  opacity: 1;
+}
   </style>
 </head>
 <body>
