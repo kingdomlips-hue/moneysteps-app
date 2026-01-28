@@ -100,13 +100,35 @@
 <footer>
   © 2026 MoneySteps • Built for beginners
 </footer>
-<script>
-  function unlockPremium() {
-    document.querySelectorAll('.locked').forEach(card => {
-      card.classList.remove('locked');
-    });
-    alert('Premium Unlocked! 🎉');
-  }
+
+  
+  <script>
+function unlockPremium() {
+  document.querySelectorAll('.locked').forEach(card => {
+    card.classList.remove('locked');
+  });
+
+  document.querySelectorAll('.lock-icon').forEach(icon => {
+    icon.style.display = 'none';
+  });
+
+  document.querySelectorAll('.unlock-btn').forEach(btn => {
+    btn.style.display = 'none';
+  });
+
+  alert('Premium Unlocked! 🎉');
+}
 </script>
+    
+    
+  
+  
+
+  
+    
+    
+  
+  
+
 </body>
 </html>
