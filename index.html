@@ -1,114 +1,141 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>MoneySteps App</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MoneySteps</title>
+
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f4f6f8;
       margin: 0;
-      padding: 20px;
-    }
-
-    h1 {
-      text-align: center;
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
       color: #222;
     }
 
+    header {
+      background: #0f0f0f;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+    }
+
+    header p {
+      margin-top: 10px;
+      font-size: 16px;
+      opacity: 0.85;
+    }
+
+    section {
+      padding: 20px;
+      max-width: 700px;
+      margin: auto;
+    }
+
     .card {
-      background: #ffffff;
-      padding: 15px;
-      margin: 15px 0;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     }
 
     .locked {
-      opacity: 0.4;
+      opacity: 0.45;
+    }
+
+    .locked h3::before {
+      content: "🔒 ";
     }
 
     button {
-      padding: 10px 15px;
-      background: #007bff;
+      background: #444;
       color: white;
       border: none;
-      border-radius: 5px;
-      cursor: pointer;
+      padding: 12px 20px;
+      border-radius: 8px;
       font-size: 16px;
+      cursor: pointer;
     }
 
     button:disabled {
       background: #aaa;
+      cursor: not-allowed;
     }
 
-    .premium {
-      background: #fff3cd;
-      border-left: 5px solid #ffc107;
+    .premium-box {
+      background: #fff2cc;
+      border-left: 6px solid gold;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+      padding: 20px;
     }
   </style>
 </head>
+
 <body>
 
-  <h1>💰 MoneySteps</h1>
+  <header>
+    <h1>💰 MoneySteps</h1>
+    <p>Daily steps to build income — one action at a time</p>
+  </header>
 
-  <!-- FREE STEPS -->
-  <div class="card">
-    <h3>Step 1: Track Your Money</h3>
-    <p>Write down everything you earn and spend daily.</p>
-  </div>
+  <section>
 
-  <div class="card">
-    <h3>Step 2: Cut One Expense</h3>
-    <p>Remove one unnecessary expense this week.</p>
-  </div>
-
-  <!-- PREMIUM INFO -->
-  <div class="card premium">
-    <h3>🔐 Premium System</h3>
-    <p id="premiumStatus">Premium locked</p>
-    <button id="unlockBtn" onclick="unlockPremium()">Unlock Premium</button>
-  </div>
-
-  <!-- PREMIUM STEPS -->
-  <div id="premiumContent">
-    <div class="card locked">
-      <h3>Step 3: Income Expansion</h3>
-      <p>Create a second income stream.</p>
+    <div class="card">
+      <h3>Step 1: Income Mindset</h3>
+      <p>Understand how money really works and why most people stay broke.</p>
     </div>
 
-    <div class="card locked">
-      <h3>Step 4: Wealth System</h3>
-      <p>Build assets that generate monthly cashflow.</p>
+    <div class="card">
+      <h3>Step 2: Pick ONE Income Skill</h3>
+      <p>Stop chasing everything. Choose one skill that pays.</p>
     </div>
-  </div>
+
+    <div id="step3" class="card locked">
+      <h3>Step 3: Your First $10 Online</h3>
+      <p>Locked — Upgrade to unlock practical steps.</p>
+    </div>
+
+    <div class="card premium-box">
+      <h3>🔓 Premium System</h3>
+      <p id="premiumStatus">Premium locked</p>
+      <button id="unlockBtn" onclick="unlockPremium()">Unlock Premium</button>
+    </div>
+
+  </section>
+
+  <footer>
+    © 2026 MoneySteps • Built for beginners
+  </footer>
 
   <script>
-    const premiumStatus = document.getElementById("premiumStatus");
-    const unlockBtn = document.getElementById("unlockBtn");
-    const premiumContent = document.getElementById("premiumContent");
-
     function unlockPremium() {
       localStorage.setItem("premiumUnlocked", "yes");
       alert("🎉 Premium Unlocked!");
-      checkPremium();
+      applyPremium();
     }
 
-    function checkPremium() {
+    function applyPremium() {
       if (localStorage.getItem("premiumUnlocked") === "yes") {
-        premiumStatus.innerText = "✅ Premium unlocked";
-        unlockBtn.disabled = true;
-        unlockBtn.innerText = "Premium Active";
-
-        const cards = premiumContent.querySelectorAll(".card");
-        cards.forEach(card => {
-          card.classList.remove("locked");
-        });
+        document.getElementById("step3").classList.remove("locked");
+        document.getElementById("premiumStatus").innerText = "✅ Premium unlocked";
+        const btn = document.getElementById("unlockBtn");
+        btn.innerText = "Premium Active";
+        btn.disabled = true;
       }
     }
 
-    checkPremium();
+    applyPremium();
   </script>
 
 </body>
