@@ -1,119 +1,115 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>MoneySteps</title>
+  <meta charset="UTF-8">
+  <title>MoneySteps App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 20px;
+    }
 
-<style>
-body {
-  font-family: Arial, sans-serif;
-  background: #f5f5f5;
-  padding: 20px;
-}
+    h1 {
+      text-align: center;
+      color: #222;
+    }
 
-header {
-  text-align: center;
-  margin-bottom: 20px;
-}
+    .card {
+      background: #ffffff;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
 
-.card {
-  background: #fff;
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
+    .locked {
+      opacity: 0.4;
+    }
 
-.locked {
-  opacity: 0.5;
-}
+    button {
+      padding: 10px 15px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
 
-button {
-  background: #111;
-  color: #fff;
-  border: none;
-  padding: 12px 18px;
-  border-radius: 5px;
-  cursor: pointer;
-}
+    button:disabled {
+      background: #aaa;
+    }
 
-footer {
-  text-align: center;
-  color: #777;
-  margin-top: 30px;
-}
-</style>
+    .premium {
+      background: #fff3cd;
+      border-left: 5px solid #ffc107;
+    }
+  </style>
 </head>
-
 <body>
 
-<header>
   <h1>💰 MoneySteps</h1>
-  <p>Daily steps to build income — one action at a time</p>
-</header>
 
-<div class="card">
-  <h3>Step 1: Income Mindset</h3>
-  <p>Understand how money really works.</p>
-</div>
+  <!-- FREE STEPS -->
+  <div class="card">
+    <h3>Step 1: Track Your Money</h3>
+    <p>Write down everything you earn and spend daily.</p>
+  </div>
 
-<div class="card">
-  <h3>Step 2: Pick ONE Income Skill</h3>
-  <p>Stop chasing everything. Focus.</p>
-</div>
+  <div class="card">
+    <h3>Step 2: Cut One Expense</h3>
+    <p>Remove one unnecessary expense this week.</p>
+  </div>
 
-<div class="card locked">
-  <h3>🔒 Step 3: Your First $10 Online</h3>
-  <p>Upgrade to unlock practical steps.</p>
-</div>
+  <!-- PREMIUM INFO -->
+  <div class="card premium">
+    <h3>🔐 Premium System</h3>
+    <p id="premiumStatus">Premium locked</p>
+    <button id="unlockBtn" onclick="unlockPremium()">Unlock Premium</button>
+  </div>
 
-<div class="card locked">
-  <h3>🔒 Step 4: Daily Money Routine</h3>
-  <p>Learn the system that compounds income.</p>
-</div>
+  <!-- PREMIUM STEPS -->
+  <div id="premiumContent">
+    <div class="card locked">
+      <h3>Step 3: Income Expansion</h3>
+      <p>Create a second income stream.</p>
+    </div>
 
-<button onclick="unlockPremium()">🔓 Unlock Premium</button>
+    <div class="card locked">
+      <h3>Step 4: Wealth System</h3>
+      <p>Build assets that generate monthly cashflow.</p>
+    </div>
+  </div>
 
-<div id="premiumContent" class="card" style="display:none;">
-  <h3>🔥 Premium Content</h3>
+  <script>
+    const premiumStatus = document.getElementById("premiumStatus");
+    const unlockBtn = document.getElementById("unlockBtn");
+    const premiumContent = document.getElementById("premiumContent");
 
-  <p><strong>Daily Money Routine</strong></p>
-  <ul>
-    <li>Learn one income skill</li>
-    <li>Practice daily (30–60 mins)</li>
-    <li>Post or pitch daily</li>
-    <li>Track progress weekly</li>
-  </ul>
+    function unlockPremium() {
+      localStorage.setItem("premiumUnlocked", "yes");
+      alert("🎉 Premium Unlocked!");
+      checkPremium();
+    }
 
-  <p><strong>Your First $10 Online</strong></p>
-  <p>Use free platforms + consistency.</p>
-</div>
+    function checkPremium() {
+      if (localStorage.getItem("premiumUnlocked") === "yes") {
+        premiumStatus.innerText = "✅ Premium unlocked";
+        unlockBtn.disabled = true;
+        unlockBtn.innerText = "Premium Active";
 
-<footer>
-  © 2026 MoneySteps • Built for beginners
-</footer>
+        const cards = premiumContent.querySelectorAll(".card");
+        cards.forEach(card => {
+          card.classList.remove("locked");
+        });
+      }
+    }
 
-<script>
-function unlockPremium() {
-  localStorage.setItem("premiumUnlocked", "yes");
-
-  document.querySelectorAll(".locked").forEach(card => {
-    card.classList.remove("locked");
-  });
-
-  document.getElementById("premiumContent").style.display = "block";
-  alert("Premium Unlocked 🎉");
-}
-
-window.onload = function () {
-  if (localStorage.getItem("premiumUnlocked") === "yes") {
-    document.querySelectorAll(".locked").forEach(card => {
-      card.classList.remove("locked");
-    });
-    document.getElementById("premiumContent").style.display = "block";
-  }
-};
-</script>
+    checkPremium();
+  </script>
 
 </body>
 </html>
