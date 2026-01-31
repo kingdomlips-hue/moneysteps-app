@@ -239,6 +239,18 @@ Unlock premium to access the full content monetization system.
     }
 
     applyPremium();
+    function saveSkill() {
+  const skill = document.getElementById("skillInput").value;
+
+  if (!skill) {
+    alert("Please enter one skill.");
+    return;
+  }
+
+  localStorage.setItem("chosenSkill", skill);
+  document.getElementById("skillStatus").innerText =
+    "✅ Focus saved: " + skill;
+}
   </script>
 
 </body>
