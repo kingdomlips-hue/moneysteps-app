@@ -201,18 +201,27 @@
   </p>
 </div>
 
-    <div class="card premium-box">
-      <h3>🔓 Premium System</h3>
-      <p id="premiumStatus">Premium locked</p>
-      <button id="unlockBtn" onclick="unlockPremium()">Unlock Premium – ₦3,000</button>
-    </div>
+<!-- PREMIUM BOX -->
+  <div class="card premium-box">
+    <h3>🔒 Premium Access</h3>
+    <p id="premiumStatus">Step 3 is locked</p>
+    <button id="unlockBtn" onclick="unlockPremium()">Unlock Premium – ₦3,000</button>
+  </div>
 
-  </section>
+  <!-- FEEDBACK CARD -->
+  <div class="card">
+    <h3>💬 Give Feedback</h3>
+    <p>We’d love to hear your thoughts! Click below to send a message on WhatsApp.</p>
+    <a href="https://wa.me/2347039521202" target="_blank">
+      <button style="background:#25D366; color:white; padding:10px 20px; border:none; border-radius:6px; cursor:pointer;">
+        Send Feedback on WhatsApp
+      </button>
+    </a>
+  </div>
 
   <footer>
     © 2026 MoneySteps • Built for beginners
   </footer>
-
   <script>
     function unlockPremium() {
       localStorage.setItem("premiumUnlocked", "yes");
