@@ -223,6 +223,7 @@
     © 2026 MoneySteps • Built for beginners
   </footer>
   <script>
+    <script>
     function unlockPremium() {
       localStorage.setItem("premiumUnlocked", "yes");
       alert("🎉 Premium Unlocked! Content Monetization access granted.");
@@ -232,12 +233,33 @@
     function applyPremium() {
       if (localStorage.getItem("premiumUnlocked") === "yes") {
         document.getElementById("step3").classList.remove("locked");
-        document.getElementById("premiumStatus").innerText = "✅ Premium unlocked";
+        document.getElementById("premiumStatus").innerText =
+          "✅ Premium unlocked: Content Monetization available";
         const btn = document.getElementById("unlockBtn");
         btn.innerText = "Premium Active";
         btn.disabled = true;
       }
     }
+
+    applyPremium();
+  </script>
+
+  <!-- FIRST-TIME ONBOARDING ALERT -->
+  <script>
+    if (!localStorage.getItem("hasVisited")) {
+      alert(
+        "👋 Welcome to MoneySteps!\n\n" +
+        "Start at Step 1.\n" +
+        "Do one step per day.\n" +
+        "Don't rush.\n\n" +
+        "Sticking to this is already a success."
+      );
+      localStorage.setItem("hasVisited", "yes");
+    }
+  </script>
+
+</body>
+</html>
 function saveSkill() {
   const skill = document.getElementById("skillInput").value;
 
