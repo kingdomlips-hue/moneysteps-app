@@ -49,7 +49,7 @@
       opacity: 0.45;
     }
 
-    .locked h3::before {
+    .locked h2::before {
       content: "🔒 ";
     }
 
@@ -84,197 +84,199 @@
 
 <body>
 
-  <header>
-    <h1>💰 MoneySteps</h1>
-    <p>Daily steps to build income — one action at a time</p>
-  </header>
+<header>
+  <h1>💰 MoneySteps</h1>
+  <p>Daily steps to build income — one action at a time</p>
+</header>
 
-  <section>
+<section>
 
+  <!-- STEP 1 -->
+  <div class="card">
+    <h2>Step 1: Income Mindset</h2>
+    <p>
+      Understand how money really works and why most people stay broke
+      <br><br>
 
-<div class="card">
-  <h2>Step 1: Income Mindset</h2>
-  <p>
-    Understand how money really works<br>
-    and why most people stay broke.
-    <br><br>
+      Most people are not broke because they don’t work hard.<br>
+      They stay broke because they trade time for money<br>
+      without building skills or systems.
+      <br><br>
 
-    Most people are not broke because they don’t work hard.<br>
-    They stay broke because they trade time for money<br>
-    without building skills or systems.
-    <br><br>
+      Money flows to:<br>
+      • Skills that solve real problems<br>
+      • Systems that work repeatedly<br>
+      • People who control value, not just effort
+      <br><br>
 
-    Money flows to:<br>
-    • Skills that solve real problems<br>
-    • Systems that work repeatedly<br>
-    • People who control value, not just effort
-    <br><br>
+      Being busy is not the same as building income.
+      <br><br>
 
-    Being busy is not the same as building income.
-    <br><br>
+      The real goal is to move from earning money<br>
+      to creating value.
+      <br><br>
 
-    The real goal is to move from earning money<br>
-    to creating value.
-    <br><br>
+      <strong>Go Deeper:</strong><br>
+      Read the full breakdown on how money actually works<br>
+      and why the hard-working stay broke.<br>
+      <a href="https://quietrebuild.blogspot.com/2026/01/income-mindset.html">
+        Read the full post →
+      </a>
+      <br><br>
 
-    <strong>Go Deeper:</strong><br>
-    Read the full breakdown on how money actually works<br>
-    and why the hard-working stay broke.<br>
-    <a href="https://quietrebuild.blogspot.com/2026/01/income-mindset.html">Read the full post →</a>
-    <br><br>
+      <strong>Today’s Action:</strong><br>
+      Write down one way you currently earn money.<br>
+      Then write one skill you could learn that pays better long-term.
+    </p>
+  </div>
 
-    <strong>Today’s Action:</strong><br>
-    Write down one way you currently earn money.<br>
-    Then write one skill you could learn<br>
-    that pays better long-term.
-  </p>
-</div>
-    
-<div class="card">
-  <h2>Step 2: Pick ONE Income Skill</h2>
-  <p>
-    Stop chasing everything.<br>
-    Focus creates income.
-    <br><br>
+  <!-- STEP 2 (RESTORED EXACT LOGIC) -->
+  <div class="card">
+    <h2>Step 2: Pick ONE Income Skill</h2>
+    <p>
+      Stop chasing everything.<br>
+      Focus creates income.
+      <br><br>
 
-    Most people fail online<br>
-    not because opportunities don’t work,<br>
-    but because they try too many things at once.
-    <br><br>
+      Most people fail online<br>
+      not because opportunities don’t work,<br>
+      but because they try too many things at once.
+      <br><br>
 
-    One skill done well<br>
-    beats ten skills done poorly.
-    <br><br>
+      One skill done well<br>
+      beats ten skills done poorly.
+      <br><br>
 
-    A real income skill:<br>
-    • People already pay for it<br>
-    • Solves a clear problem<br>
-    • Improves with practice
-    <br><br>
+      A real income skill:<br>
+      • People already pay for it<br>
+      • Solves a clear problem<br>
+      • Improves with practice
+      <br><br>
 
-    You don’t need passion.<br>
-    You need demand.
-    <br><br>
+      You don’t need passion.<br>
+      You need demand.
+      <br><br>
 
-    <strong>Go Deeper:</strong><br>
-    Read how focus creates income<br>
-    and how to choose the right skill.<br>
-    <a href="https://quietrebuild.blogspot.com/2026/01/creating-income.html">Read the full post →</a>
-    <br><br>
-<label for="skillInput"><strong>Your chosen skill:</strong></label><br>
-<input 
-  type="text" 
-  id="skillInput" 
-  placeholder="e.g. Writing, Video editing, Teaching..."
-  style="width:100%; padding:10px; margin-top:8px;"
-/>
-<br><br>
-<button onclick="saveSkill()">Save My Focus</button>
-<p id="skillStatus"></p>
-    <strong>Today’s Action:</strong><br>
-    Write down 3 skills you could learn.<br>
-    Circle ONE that people already pay for.
-  </p>
-</div>
-<div class="card locked" id="step3">
-  <h2>Step 3: Your First $10 Online (Content Monetization)</h2>
-  <p>
-    Congratulations on choosing focus! 🎉<br><br>
+      <strong>Go Deeper:</strong><br>
+      Read how focus creates income<br>
+      and how to choose the right skill.<br>
+      <a href="https://quietrebuild.blogspot.com/2026/01/creating-income.html">
+        Read the full post →
+      </a>
+      <br><br>
 
-    Now it’s time to turn your knowledge or skill into real income.<br><br>
+      <label><strong>Your chosen skill:</strong></label><br>
+      <input
+        type="text"
+        id="skillInput"
+        placeholder="e.g. Writing, Video editing, Teaching..."
+        style="width:100%; padding:10px; margin-top:8px;"
+      />
+      <br><br>
+      <button onclick="saveSkill()">Save My Focus</button>
+      <p id="skillStatus"></p>
 
-    Content monetization works because:<br>
-    • It requires little to no capital<br>
-    • You can start immediately<br>
-    • Skills improve as you practice<br><br>
+      <strong>Today’s Action:</strong><br>
+      Write down 3 skills you could learn.<br>
+      Circle ONE that people already pay for.
+    </p>
+  </div>
 
-    Inside Step 3, you’ll learn how to:<br>
-    • Pick the type of content that people already want<br>
-    • Package it simply and clearly<br>
-    • Share it online effectively<br>
-    • Earn your first $10 from your skill<br><br>
+  <!-- STEP 3 (CONTENT MONETIZATION – PREMIUM) -->
+  <div class="card locked" id="step3">
+    <h2>Step 3: Your First $10 Online (Content Monetization)</h2>
+    <p>
+      You’ve chosen your focus.<br>
+      Now it’s time to see your skill in action.
+      <br><br>
 
-    This is **not about getting rich overnight**.<br>
-    It’s about proving to yourself that online income is real and achievable.<br><br>
+      Step 3 shows you how to turn that ONE skill<br>
+      into real, tangible income online.
+      <br><br>
 
-    <strong>Next step:</strong> Unlock premium to access the full content monetization system and start your journey.
-  </p>
-</div>
+      Inside, you’ll discover how to:<br>
+      • Package your skill simply<br>
+      • Find people who already want it<br>
+      • Make your very first $10 online
+      <br><br>
 
-<!-- PREMIUM BOX -->
+      This is <strong>not about getting rich overnight</strong>.<br>
+      It’s about proving to yourself that online income is real.
+      <br><br>
+
+      <strong>Locked:</strong><br>
+      Upgrade to unlock practical steps and start earning.
+    </p>
+  </div>
+
+  <!-- PREMIUM BOX -->
   <div class="card premium-box">
     <h3>🔒 Premium Access</h3>
     <p id="premiumStatus">Step 3 is locked</p>
-    <button id="unlockBtn" onclick="unlockPremium()">Unlock Premium – ₦3,000</button>
+    <button id="unlockBtn" onclick="unlockPremium()">
+      Unlock Premium – ₦3,000
+    </button>
   </div>
 
-  <!-- FEEDBACK CARD -->
+  <!-- FEEDBACK -->
   <div class="card">
     <h3>💬 Give Feedback</h3>
-    <p>We’d love to hear your thoughts! Click below to send a message on WhatsApp.</p>
+    <p>We’d love to hear your thoughts.</p>
     <a href="https://wa.me/2347039521202" target="_blank">
-      <button style="background:#25D366; color:white; padding:10px 20px; border:none; border-radius:6px; cursor:pointer;">
+      <button style="background:#25D366;">
         Send Feedback on WhatsApp
       </button>
     </a>
   </div>
 
-  <footer>
-    © 2026 MoneySteps • Built for beginners
-  </footer>
-  <script>
-    <script>
-    function unlockPremium() {
-      localStorage.setItem("premiumUnlocked", "yes");
-      alert("🎉 Premium Unlocked! Content Monetization access granted.");
-      applyPremium();
-    }
+</section>
 
-    function applyPremium() {
-      if (localStorage.getItem("premiumUnlocked") === "yes") {
-        document.getElementById("step3").classList.remove("locked");
-        document.getElementById("premiumStatus").innerText =
-          "✅ Premium unlocked: Content Monetization available";
-        const btn = document.getElementById("unlockBtn");
-        btn.innerText = "Premium Active";
-        btn.disabled = true;
-      }
-    }
-function saveSkill() {
-  const skill = document.getElementById("skillInput").value;
+<footer>
+  © 2026 MoneySteps • Built for beginners
+</footer>
 
-  if (!skill) {
-    alert("Please enter one skill.");
-    return;
+<script>
+  function unlockPremium() {
+    localStorage.setItem("premiumUnlocked", "yes");
+    alert("🎉 Premium Unlocked!");
+    applyPremium();
   }
 
-  localStorage.setItem("chosenSkill", skill);
-  document.getElementById("skillStatus").innerText =
-    "✅ Focus saved: " + skill;
-}
-    applyPremium();
-  </script>
-
-  <!-- FIRST-TIME ONBOARDING ALERT -->
-  <script>
-    if (!localStorage.getItem("hasVisited")) {
-      alert(
-        "👋 Welcome to MoneySteps!\n\n" +
-        "Start at Step 1.\n" +
-        "Do one step per day.\n" +
-        "Don't rush.\n\n" +
-        "Sticking to this is already a success."
-      );
-      localStorage.setItem("hasVisited", "yes");
+  function applyPremium() {
+    if (localStorage.getItem("premiumUnlocked") === "yes") {
+      document.getElementById("step3").classList.remove("locked");
+      document.getElementById("premiumStatus").innerText =
+        "✅ Premium unlocked";
+      const btn = document.getElementById("unlockBtn");
+      btn.innerText = "Premium Active";
+      btn.disabled = true;
     }
-  </script>
+  }
 
-</body>
-</html>
+  function saveSkill() {
+    const skill = document.getElementById("skillInput").value.trim();
+    if (!skill) {
+      alert("Please enter one skill.");
+      return;
+    }
+    localStorage.setItem("chosenSkill", skill);
+    document.getElementById("skillStatus").innerText =
+      "✅ Focus saved: " + skill;
+  }
 
-    
+  if (!localStorage.getItem("hasVisited")) {
+    alert(
+      "👋 Welcome to MoneySteps!\n\n" +
+      "Start at Step 1.\n" +
+      "Do one step per day.\n" +
+      "Don't rush.\n\n" +
+      "Sticking to this is already a success."
+    );
+    localStorage.setItem("hasVisited", "yes");
+  }
 
-  </script>
+  applyPremium();
+</script>
 
 </body>
 </html>
