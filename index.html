@@ -46,11 +46,14 @@
     }
 
     .locked {
-      opacity: 0.45;
+      display: none; /* hidden until unlocked */
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
     }
 
-    .locked h3::before {
-      content: "🔒 ";
+    .fade-in {
+      display: block !important;
+      opacity: 1 !important;
     }
 
     button {
@@ -71,6 +74,9 @@
     .premium-box {
       background: #fff2cc;
       border-left: 6px solid gold;
+      text-align: center;
+      padding: 20px;
+      margin-bottom: 20px;
     }
 
     pre {
@@ -194,12 +200,11 @@
       </p>
     </div>
 
-    <!-- STEP 3 PREMIUM -->
+    <!-- STEP 3 -->
     <div class="card" id="step3">
-
       <h2>Step 3: Content Monetization</h2>
 
-      <!-- Cards 1-3 visible by default -->
+      <!-- VISIBLE INTRO -->
       <div class="card">
         <h3>Welcome</h3>
         <p>
@@ -235,17 +240,16 @@
         </p>
       </div>
 
-      <!-- Premium content hidden initially -->
-      <div id="premiumContent" class="locked" style="display:none;">
+      <!-- UNLOCK BUTTON -->
+      <div class="premium-box" id="premiumPrompt">
+        <p>🔒 Unlock the full Step 3 content and start monetizing effectively!</p>
+        <button onclick="unlockPremium()">Unlock Premium →</button>
+      </div>
 
-        <h3>What Will You Monetize?</h3>
-        <p>
-          Choose ONE only:<br><br>
-          <strong>Teach</strong> — explain something clearly<br>
-          <strong>Solve</strong> — fix a problem<br>
-          <strong>Shortcut</strong> — save time with steps or templates<br><br>
-          One skill. One angle.
-        </p>
+      <!-- PREMIUM CONTENT HIDDEN -->
+      <div id="premiumContent" class="locked">
+        <p><strong>What Will You Monetize?</strong><br>
+        Choose ONE only: Teach, Solve, or Shortcut. Focus on one skill and one angle.</p>
         <pre>
 Example prompts to pick your angle:
 - Teach: "I can explain how to [skill] step by step."
@@ -253,14 +257,7 @@ Example prompts to pick your angle:
 - Shortcut: "I have a [checklist/template] that saves time on [task]."
         </pre>
 
-        <h3>Your Content Format</h3>
-        <p>
-          Pick ONE format you can repeat:<br>
-          • Text (posts, messages)<br>
-          • Voice (voice notes)<br>
-          • Simple video (talking or screen)<br><br>
-          If you can explain it to a friend, you can monetize it.
-        </p>
+        <p><strong>Your Content Format:</strong> Pick ONE format: Text, Voice, or Simple Video. Repeatable content is key.</p>
         <pre>
 Example formats:
 - Text: Write a 3-step guide or micro-post
@@ -268,15 +265,7 @@ Example formats:
 - Video: Screen-share tutorial or talking tips
         </pre>
 
-        <h3>Where to Post</h3>
-        <p>
-          Forget algorithms.<br>
-          Choose where people already reply to you:<br>
-          • WhatsApp<br>
-          • X (Twitter)<br>
-          • Facebook<br><br>
-          Conversations create income.
-        </p>
+        <p><strong>Where to Post:</strong> Choose platforms where people already interact: WhatsApp, X, Facebook.</p>
         <pre>
 Example:
 - WhatsApp: Share tips to small groups
@@ -284,12 +273,7 @@ Example:
 - Facebook: Join relevant groups and share value
         </pre>
 
-        <h3>Your First Offer</h3>
-        <p>
-          Your first offer should be small, clear, and easy to deliver.<br>
-          Price: ₦3,000–₦5,000<br><br>
-          Sell the outcome, not effort.
-        </p>
+        <p><strong>Your First Offer:</strong> Small, clear, easy to deliver. Price: ₦3,000–₦5,000.</p>
         <pre>
 Example offers:
 - ₦3,000 — I’ll review and improve your CV in 24h
@@ -297,11 +281,7 @@ Example offers:
 - ₦3,000 — 20-min WhatsApp guidance session to start [skill]
         </pre>
 
-        <h3>How to Ask (Without Fear)</h3>
-        <p>
-          You don’t announce. You invite.<br>
-          No pressure. The right people respond.
-        </p>
+        <p><strong>How to Ask (Without Fear):</strong> Invite, don’t announce. The right people respond.</p>
         <pre>
 Example scripts:
 - "I help with [skill/problem]. Reply 'YES' if interested."
@@ -309,15 +289,7 @@ Example scripts:
 - "I can make [result] happen for you. Send 'YES' and we’ll start."
         </pre>
 
-        <h3>After Payment</h3>
-        <p>
-          Once someone pays:<br>
-          1. Respond quickly<br>
-          2. Confirm what you’ll deliver<br>
-          3. Deliver simply<br>
-          4. Communicate clearly<br><br>
-          Trust creates repeat income.
-        </p>
+        <p><strong>After Payment:</strong> Deliver simply and communicate clearly.</p>
         <pre>
 Example delivery messages:
 - "Thanks for your payment! Here’s what I promised: [deliverable]."
@@ -325,32 +297,12 @@ Example delivery messages:
 - "Please reply if you have any questions while using this."
         </pre>
 
-        <h3>Reflection</h3>
-        <p>
-          Ask yourself:<br>
-          • What worked?<br>
-          • What felt easy?<br>
-          • What confused people?<br><br>
-          This wasn’t luck. You followed steps.
-        </p>
+        <p><strong>Reflection:</strong> Track your results, note what worked and what didn’t.</p>
         <pre>
 Tip: Write it down. Keep a mini-journal of actions and results.
         </pre>
-
       </div>
 
-    </div>
-
-    <!-- PREMIUM BOX -->
-    <div class="card premium-box" id="premiumBox">
-      <h3>🔒 Premium Access</h3>
-      <p id="premiumStatus">Step 3 premium content is locked — ₦3,000 one-time access</p>
-      <button id="unlockBtn" onclick="unlockPremium()">Unlock Premium – ₦3,000</button>
-      <div id="codeSection" style="margin-top:10px;">
-        <label for="codeInput"><strong>Enter code if you have one:</strong></label><br>
-        <input type="text" id="codeInput" placeholder="Enter your access code" style="width:100%; padding:8px; margin-top:5px;" />
-        <button onclick="enterCode()">Submit Code</button>
-      </div>
     </div>
 
     <!-- FEEDBACK CARD -->
@@ -374,24 +326,24 @@ Tip: Write it down. Keep a mini-journal of actions and results.
     const defaultCode = "MSTEPS2026"; // default test code
 
     function unlockPremium() {
-      const waLink = "https://wa.me/2347039521202?text=I%20want%20to%20unlock%20MoneySteps%20Premium";
-      window.open(waLink, "_blank");
+      const code = prompt("Enter your premium code or leave empty to use WhatsApp payment:");
+      if(code === defaultCode){
+        localStorage.setItem("premiumUnlocked","yes");
+        showPremiumContent();
+        alert("🎉 Premium unlocked via code!");
+      } else if(code === "" || code === null) {
+        const waLink = "https://wa.me/2347039521202?text=I%20want%20to%20unlock%20MoneySteps%20Premium";
+        window.open(waLink, "_blank");
+      } else {
+        alert("❌ Invalid code. Please check with support.");
+      }
     }
 
-    function applyPremium() {
-      const premiumContent = document.getElementById("premiumContent");
-      const premiumBox = document.getElementById("premiumBox");
-      const codeSection = document.getElementById("codeSection");
-
-      if(localStorage.getItem("premiumUnlocked") === "yes"){
-        premiumContent.style.display = "block";
-        premiumContent.classList.remove("locked");
-        document.getElementById("premiumStatus").innerText = "✅ Premium Active: Content Monetization available";
-        const btn = document.getElementById("unlockBtn");
-        btn.innerText = "✅ Premium Active";
-        btn.disabled = true;
-        codeSection.style.display = "none";
-      }
+    function showPremiumContent(){
+      const premium = document.getElementById("premiumContent");
+      const promptBox = document.getElementById("premiumPrompt");
+      premium.classList.add("fade-in");
+      promptBox.style.display = "none";
     }
 
     function saveSkill() {
@@ -405,32 +357,18 @@ Tip: Write it down. Keep a mini-journal of actions and results.
     function applySkillToPremium() {
       const skill = localStorage.getItem("chosenSkill");
       if (!skill) return;
-      const premiumCards = document.querySelectorAll("#premiumContent pre");
-      premiumCards.forEach(card => {
-        card.innerHTML = card.innerHTML.replace(/\[skill\]/g, skill);
+      const preTags = document.querySelectorAll("#premiumContent pre");
+      preTags.forEach(pre => {
+        pre.innerHTML = pre.innerHTML.replace(/\[skill\]/g, skill);
       });
     }
 
-    function enterCode(){
-      const code = document.getElementById("codeInput").value.trim();
-      if(code === defaultCode){
-        localStorage.setItem("premiumUnlocked","yes");
-        applyPremium();
-        alert("🎉 Premium unlocked via code!");
-        document.getElementById("codeInput").value = "";
-      } else {
-        alert("❌ Invalid code. Please check with support.");
-      }
+    // Run on load
+    if(localStorage.getItem("premiumUnlocked") === "yes") {
+      showPremiumContent();
     }
 
-    // RUN ON LOAD
-    applyPremium();
     applySkillToPremium();
-
-    if (!localStorage.getItem("hasVisited")) {
-      alert("👋 Welcome to MoneySteps!\n\nStart at Step 1.\nDo one step per day.\nDon't rush.\n\nSticking to this is already a success.");
-      localStorage.setItem("hasVisited", "yes");
-    }
   </script>
 
 </body>
