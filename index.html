@@ -87,14 +87,6 @@
       padding: 20px;
     }
 
-    input[type="text"] {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      margin-bottom: 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
   </style>
 </head>
 
@@ -191,8 +183,9 @@
           type="text" 
           id="skillInput" 
           placeholder="e.g. Writing, Video editing, Teaching..."
+          style="width:100%; padding:10px; margin-top:8px;"
         />
-        <br>
+        <br><br>
         <button onclick="saveSkill()">Save My Focus</button>
         <p id="skillStatus"></p>
         <strong>Today’s Action:</strong><br>
@@ -373,7 +366,7 @@ Tip: Write it down. Keep a mini-journal of actions and results.
       <button id="unlockBtn" onclick="unlockPremium()">Unlock Premium – ₦3,000</button>
       <div id="codeSection" style="margin-top:10px;">
         <label for="codeInput"><strong>Enter code if you have one:</strong></label><br>
-        <input type="text" id="codeInput" placeholder="Enter your access code" />
+        <input type="text" id="codeInput" placeholder="Enter your access code" style="width:100%; padding:8px; margin-top:5px;" />
         <button onclick="enterCode()">Submit Code</button>
       </div>
     </div>
@@ -383,7 +376,9 @@ Tip: Write it down. Keep a mini-journal of actions and results.
       <h3>💬 Give Feedback</h3>
       <p>We’d love to hear your thoughts! Click below to send a message on WhatsApp.</p>
       <a href="https://wa.me/2347039521202" target="_blank">
-        <button style="background:#25D366; color:white;">Send Feedback on WhatsApp</button>
+        <button style="background:#25D366; color:white; padding:10px 20px; border:none; border-radius:6px; cursor:pointer;">
+          Send Feedback on WhatsApp
+        </button>
       </a>
     </div>
 
@@ -394,8 +389,7 @@ Tip: Write it down. Keep a mini-journal of actions and results.
   </footer>
 
   <script>
-    // --- MULTI-CODE PREMIUM SYSTEM ---
-    const premiumCodes = ["MSTEPS2026", "USER123", "PAID2026"]; // add as many codes as you want
+    const defaultCode = "MSTEPS2026"; // default test/admin code
 
     function unlockPremium() {
       const waLink = "https://wa.me/2347039521202?text=I%20want%20to%20unlock%20MoneySteps%20Premium";
@@ -413,12 +407,14 @@ Tip: Write it down. Keep a mini-journal of actions and results.
         const btn = document.getElementById("unlockBtn");
         btn.innerText = "✅ Premium Active";
         btn.disabled = true;
+
+        // Hide code input section
         codeSection.style.display = "none";
       }
     }
 
     function saveSkill() {
-      const skill = document.getElementById("skillInput").value.trim();
+      const skill = document.getElementById("skillInput").value;
       if (!skill) { alert("Please enter one skill."); return; }
       localStorage.setItem("chosenSkill", skill);
       document.getElementById("skillStatus").innerText = "✅ Focus saved: " + skill;
@@ -436,7 +432,7 @@ Tip: Write it down. Keep a mini-journal of actions and results.
 
     function enterCode(){
       const code = document.getElementById("codeInput").value.trim();
-      if(premiumCodes.includes(code)){
+      if(code === defaultCode){
         localStorage.setItem("premiumUnlocked","yes");
         applyPremium();
         alert("🎉 Premium unlocked via code!");
@@ -446,7 +442,7 @@ Tip: Write it down. Keep a mini-journal of actions and results.
       }
     }
 
-    // --- INITIALIZATION ---
+    // RUN ON LOAD
     applyPremium();
     applySkillToStep3();
 
