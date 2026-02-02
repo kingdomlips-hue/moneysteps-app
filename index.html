@@ -73,25 +73,6 @@
       border-left: 6px solid gold;
     }
 
-    .premium-active {
-      background: #d4edda;
-      border-left: 6px solid #28a745;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 12px;
-      color: #155724;
-      font-weight: bold;
-    }
-
-    input[type="text"] {
-      width: 100%;
-      padding: 10px;
-      margin-top: 8px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-    }
-
     pre {
       background:#f0f0f0;
       padding:10px;
@@ -105,6 +86,7 @@
       color: #777;
       padding: 20px;
     }
+
   </style>
 </head>
 
@@ -191,9 +173,6 @@
         You don’t need passion.<br>
         You need demand.
         <br><br>
-        One thing at a time.<br>
-        Stop spreading yourself thin.
-        <br><br>
         <strong>Go Deeper:</strong><br>
         Read how focus creates income<br>
         and how to choose the right skill.<br>
@@ -204,6 +183,7 @@
           type="text" 
           id="skillInput" 
           placeholder="e.g. Writing, Video editing, Teaching..."
+          style="width:100%; padding:10px; margin-top:8px;"
         />
         <br><br>
         <button onclick="saveSkill()">Save My Focus</button>
@@ -383,16 +363,12 @@ Tip: Write it down. Keep a mini-journal of actions and results.
     <div class="card premium-box" id="premiumBox">
       <h3>🔒 Premium Access</h3>
       <p id="premiumStatus">Step 3 is locked — ₦3,000 one-time access</p>
-      <p>Click below to request payment info on WhatsApp:</p>
-      <a href="https://wa.me/2347039521202?text=I%20want%20to%20unlock%20MoneySteps%20premium" target="_blank">
-        <button>Unlock Premium – ₦3,000 (One-time)</button>
-      </a>
-      <br><br>
-      <label for="premiumCode"><strong>Enter code if you have one:</strong></label><br>
-      <input type="text" id="premiumCode" placeholder="Enter premium code">
-      <br><br>
-      <button onclick="checkCode()">Submit Code</button>
-      <p id="codeStatus"></p>
+      <button id="unlockBtn" onclick="unlockPremium()">Unlock Premium – ₦3,000</button>
+      <div id="codeSection" style="margin-top:10px;">
+        <label for="codeInput"><strong>Enter code if you have one:</strong></label><br>
+        <input type="text" id="codeInput" placeholder="Enter your access code" style="width:100%; padding:8px; margin-top:5px;" />
+        <button onclick="enterCode()">Submit Code</button>
+      </div>
     </div>
 
     <!-- FEEDBACK CARD -->
@@ -413,18 +389,35 @@ Tip: Write it down. Keep a mini-journal of actions and results.
   </footer>
 
   <script>
-    const DEFAULT_TEST_CODE = "TEST123"; // default code for testing
+    const defaultCode = "MSTEPS2026"; // default test code
 
-    // SAVE USER SKILL
+    function unlockPremium() {
+      const waLink = "https://wa.me/2347039521202?text=I%20want%20to%20unlock%20MoneySteps%20Premium";
+      window.open(waLink, "_blank");
+    }
+
+    function applyPremium() {
+      const step3 = document.getElementById("step3");
+      const premiumBox = document.getElementById("premiumBox");
+      const codeSection = document.getElementById("codeSection");
+
+      if(localStorage.getItem("premiumUnlocked") === "yes"){
+        step3.classList.remove("locked");
+        document.getElementById("premiumStatus").innerText = "✅ Premium Active: Content Monetization available";
+        const btn = document.getElementById("unlockBtn");
+        btn.innerText = "✅ Premium Active";
+        btn.disabled = true;
+
+        // Hide code input section after unlock
+        codeSection.style.display = "none";
+      }
+    }
+
     function saveSkill() {
       const skill = document.getElementById("skillInput").value;
-      if (!skill) {
-        alert("Please enter one skill.");
-        return;
-      }
+      if (!skill) { alert("Please enter one skill."); return; }
       localStorage.setItem("chosenSkill", skill);
-      document.getElementById("skillStatus").innerText =
-        "✅ Focus saved: " + skill;
+      document.getElementById("skillStatus").innerText = "✅ Focus saved: " + skill;
       applySkillToStep3();
     }
 
@@ -437,41 +430,24 @@ Tip: Write it down. Keep a mini-journal of actions and results.
       });
     }
 
-    function checkCode() {
-      const entered = document.getElementById("premiumCode").value.trim();
-      if (!entered) {
-        alert("Please enter your code.");
-        return;
-      }
-      if (entered === DEFAULT_TEST_CODE || localStorage.getItem("premiumUnlocked") === "yes") {
-        localStorage.setItem("premiumUnlocked", "yes");
-        activatePremium();
+    function enterCode(){
+      const code = document.getElementById("codeInput").value.trim();
+      if(code === defaultCode){
+        localStorage.setItem("premiumUnlocked","yes");
+        applyPremium();
+        alert("🎉 Premium unlocked via code!");
+        document.getElementById("codeInput").value = "";
       } else {
-        document.getElementById("codeStatus").innerText = "❌ Invalid code. Please try again.";
+        alert("❌ Invalid code. Please check with support.");
       }
     }
 
-    function activatePremium() {
-      document.getElementById("step3").classList.remove("locked");
-      const premiumBox = document.getElementById("premiumBox");
-      premiumBox.innerHTML = `<div class="premium-active">✅ Premium Active: Content Monetization unlocked</div>`;
-      applySkillToStep3();
-    }
-
-    // ON LOAD
-    if (localStorage.getItem("premiumUnlocked") === "yes") {
-      activatePremium();
-    }
+    // RUN ON LOAD
+    applyPremium();
     applySkillToStep3();
 
     if (!localStorage.getItem("hasVisited")) {
-      alert(
-        "👋 Welcome to MoneySteps!\n\n" +
-        "Start at Step 1.\n" +
-        "Do one step per day.\n" +
-        "Don't rush.\n\n" +
-        "Sticking to this is already a success."
-      );
+      alert("👋 Welcome to MoneySteps!\n\nStart at Step 1.\nDo one step per day.\nDon't rush.\n\nSticking to this is already a success.");
       localStorage.setItem("hasVisited", "yes");
     }
   </script>
