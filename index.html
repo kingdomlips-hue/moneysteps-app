@@ -47,6 +47,7 @@
 
     .locked {
       opacity: 0.45;
+      pointer-events: none; /* prevent interaction before unlock */
     }
 
     .locked h3::before {
@@ -78,6 +79,7 @@
       padding:10px;
       border-radius:6px;
       overflow-x:auto;
+      white-space: pre-wrap; /* ensures readability */
     }
 
     footer {
@@ -199,7 +201,6 @@
 
       <h2>Step 3: Content Monetization</h2>
 
-      <!-- CARD 1 -->
       <div class="card">
         <h3>Welcome</h3>
         <p>
@@ -212,7 +213,6 @@
         </p>
       </div>
 
-      <!-- CARD 2 -->
       <div class="card">
         <h3>What Success Means</h3>
         <p>
@@ -225,7 +225,6 @@
         </p>
       </div>
 
-      <!-- CARD 3 -->
       <div class="card">
         <h3>How Content Makes Money</h3>
         <p>
@@ -237,7 +236,6 @@
         </p>
       </div>
 
-      <!-- CARD 4 -->
       <div class="card">
         <h3>What Will You Monetize?</h3>
         <p>
@@ -255,7 +253,6 @@ Example prompts to pick your angle:
         </pre>
       </div>
 
-      <!-- CARD 5 -->
       <div class="card">
         <h3>Your Content Format</h3>
         <p>
@@ -273,7 +270,6 @@ Example formats:
         </pre>
       </div>
 
-      <!-- CARD 6 -->
       <div class="card">
         <h3>Where to Post</h3>
         <p>
@@ -292,7 +288,6 @@ Example:
         </pre>
       </div>
 
-      <!-- CARD 7 -->
       <div class="card">
         <h3>Your First Offer</h3>
         <p>
@@ -308,7 +303,6 @@ Example offers:
         </pre>
       </div>
 
-      <!-- CARD 8 -->
       <div class="card">
         <h3>How to Ask (Without Fear)</h3>
         <p>
@@ -323,7 +317,6 @@ Example scripts:
         </pre>
       </div>
 
-      <!-- CARD 9 -->
       <div class="card">
         <h3>After Payment</h3>
         <p>
@@ -342,7 +335,6 @@ Example delivery messages:
         </pre>
       </div>
 
-      <!-- CARD 10 -->
       <div class="card">
         <h3>Reflection</h3>
         <p>
@@ -407,14 +399,12 @@ Tip: Write it down. Keep a mini-journal of actions and results.
         const btn = document.getElementById("unlockBtn");
         btn.innerText = "✅ Premium Active";
         btn.disabled = true;
-
-        // Hide code input section after unlock
         codeSection.style.display = "none";
       }
     }
 
     function saveSkill() {
-      const skill = document.getElementById("skillInput").value;
+      const skill = document.getElementById("skillInput").value.trim();
       if (!skill) { alert("Please enter one skill."); return; }
       localStorage.setItem("chosenSkill", skill);
       document.getElementById("skillStatus").innerText = "✅ Focus saved: " + skill;
@@ -424,8 +414,7 @@ Tip: Write it down. Keep a mini-journal of actions and results.
     function applySkillToStep3() {
       const skill = localStorage.getItem("chosenSkill");
       if (!skill) return;
-      const step3Cards = document.querySelectorAll("#step3 .card pre");
-      step3Cards.forEach(card => {
+      document.querySelectorAll("#step3 .card pre").forEach(card => {
         card.innerHTML = card.innerHTML.replace(/\[skill\]/g, skill);
       });
     }
