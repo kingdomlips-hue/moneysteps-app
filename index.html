@@ -87,13 +87,14 @@
       padding: 20px;
     }
 
-    input[type=text] {
+    input[type="text"] {
       width: 100%;
       padding: 10px;
       margin-top: 8px;
       margin-bottom: 10px;
       border-radius: 6px;
       border: 1px solid #ccc;
+      font-size: 16px;
     }
   </style>
 </head>
@@ -140,7 +141,6 @@
       </p>
     </div>
 
-    <!-- WHO MONEYSTEPS IS FOR -->
     <div class="card">
       <h2>Who MoneySteps is For</h2>
       <p>
@@ -187,11 +187,7 @@
         <a href="https://quietrebuild.blogspot.com/2026/01/creating-income.html">Read the full post →</a>
         <br><br>
         <label for="skillInput"><strong>Your chosen skill:</strong></label><br>
-        <input 
-          type="text" 
-          id="skillInput" 
-          placeholder="e.g. Writing, Video editing, Teaching..."
-        />
+        <input type="text" id="skillInput" placeholder="e.g. Writing, Video editing, Teaching..." />
         <br>
         <button onclick="saveSkill()">Save My Focus</button>
         <p id="skillStatus"></p>
@@ -370,9 +366,13 @@ Tip: Write it down. Keep a mini-journal of actions and results.
     <div class="card premium-box">
       <h3>🔒 Premium Access</h3>
       <p id="premiumStatus">Step 3 is locked — ₦3,000 one-time access</p>
-      <input type="text" id="premiumCodeInput" placeholder="Enter code if you have one">
-      <br>
-      <button id="unlockBtn" onclick="unlockPremium()">Unlock Premium – ₦3,000 (One-time)</button>
+      <button id="unlockBtn" onclick="goToWhatsApp()">Unlock Premium – ₦3,000</button>
+
+      <div id="codeSection" style="margin-top:10px;">
+        <label for="premiumCodeInput"><strong>Enter code if you have one:</strong></label>
+        <input type="text" id="premiumCodeInput" placeholder="Enter code here"/>
+        <button onclick="enterCode()">Submit Code</button>
+      </div>
     </div>
 
     <!-- FEEDBACK CARD -->
@@ -394,18 +394,26 @@ Tip: Write it down. Keep a mini-journal of actions and results.
 
   <!-- SCRIPTS -->
   <script>
-    const PREMIUM_CODE = "MONEYSTEPS2026"; // Example manual code
+    // Valid codes (default test + issued codes)
+    const VALID_CODES = ["TEST123", "ABC123", "XYZ456"];
 
-    // PREMIUM LOGIC
-    function unlockPremium() {
-      const inputCode = document.getElementById("premiumCodeInput").value.trim();
+    function goToWhatsApp() {
+      const phone = "2347039521202";
+      const skill = document.getElementById("skillInput").value.trim() || "User";
+      const message = encodeURIComponent(
+        `Hello, I want to unlock MoneySteps Step 3 Premium – ₦3,000. My name/skill: ${skill}`
+      );
+      window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+    }
 
-      if (inputCode === PREMIUM_CODE || !inputCode) {
+    function enterCode() {
+      const input = document.getElementById("premiumCodeInput").value.trim();
+      if (VALID_CODES.includes(input)) {
         localStorage.setItem("premiumUnlocked", "yes");
-        alert("🎉 Premium Unlocked! Content Monetization access granted.");
         applyPremium();
+        alert("🎉 Premium Unlocked! Content Monetization access granted.");
       } else {
-        alert("❌ Invalid code. Please contact WhatsApp support to unlock.");
+        alert("❌ Invalid code. Please check and try again.");
       }
     }
 
@@ -417,11 +425,12 @@ Tip: Write it down. Keep a mini-journal of actions and results.
         const btn = document.getElementById("unlockBtn");
         btn.innerText = "Premium Active";
         btn.disabled = true;
-        document.getElementById("premiumCodeInput").disabled = true;
+
+        const codeSection = document.getElementById("codeSection");
+        if (codeSection) codeSection.style.display = "none";
       }
     }
 
-    // SAVE USER SKILL
     function saveSkill() {
       const skill = document.getElementById("skillInput").value;
       if (!skill) {
@@ -431,12 +440,9 @@ Tip: Write it down. Keep a mini-journal of actions and results.
       localStorage.setItem("chosenSkill", skill);
       document.getElementById("skillStatus").innerText =
         "✅ Focus saved: " + skill;
-
-      // Update Step 3 templates immediately after saving
       applySkillToStep3();
     }
 
-    // APPLY SAVED SKILL TO STEP 3 TEMPLATES
     function applySkillToStep3() {
       const skill = localStorage.getItem("chosenSkill");
       if (!skill) return;
@@ -447,11 +453,9 @@ Tip: Write it down. Keep a mini-journal of actions and results.
       });
     }
 
-    // RUN ON LOAD
     applyPremium();
     applySkillToStep3();
 
-    // FIRST-TIME ONBOARDING ALERT
     if (!localStorage.getItem("hasVisited")) {
       alert(
         "👋 Welcome to MoneySteps!\n\n" +
