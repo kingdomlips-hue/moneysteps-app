@@ -47,7 +47,6 @@
 
     .locked {
       opacity: 0.45;
-      pointer-events: none; /* prevent interaction before unlock */
     }
 
     .locked h3::before {
@@ -79,7 +78,6 @@
       padding:10px;
       border-radius:6px;
       overflow-x:auto;
-      white-space: pre-wrap; /* ensures readability */
     }
 
     footer {
@@ -87,6 +85,10 @@
       font-size: 14px;
       color: #777;
       padding: 20px;
+    }
+
+    .hidden {
+      display: none;
     }
 
   </style>
@@ -201,6 +203,7 @@
 
       <h2>Step 3: Content Monetization</h2>
 
+      <!-- CARD 1 -->
       <div class="card">
         <h3>Welcome</h3>
         <p>
@@ -213,6 +216,7 @@
         </p>
       </div>
 
+      <!-- CARD 2 -->
       <div class="card">
         <h3>What Success Means</h3>
         <p>
@@ -225,6 +229,7 @@
         </p>
       </div>
 
+      <!-- CARD 3 -->
       <div class="card">
         <h3>How Content Makes Money</h3>
         <p>
@@ -236,117 +241,129 @@
         </p>
       </div>
 
-      <div class="card">
-        <h3>What Will You Monetize?</h3>
-        <p>
-          Choose ONE only:<br><br>
-          <strong>Teach</strong> — explain something clearly<br>
-          <strong>Solve</strong> — fix a problem<br>
-          <strong>Shortcut</strong> — save time with steps or templates<br><br>
-          One skill. One angle.
-        </p>
-        <pre>
+      <!-- HIDDEN PREMIUM CARDS 4-10 -->
+      <div id="premiumContent" class="hidden">
+
+        <!-- CARD 4 -->
+        <div class="card">
+          <h3>What Will You Monetize?</h3>
+          <p>
+            Choose ONE only:<br><br>
+            <strong>Teach</strong> — explain something clearly<br>
+            <strong>Solve</strong> — fix a problem<br>
+            <strong>Shortcut</strong> — save time with steps or templates<br><br>
+            One skill. One angle.
+          </p>
+          <pre>
 Example prompts to pick your angle:
 - Teach: "I can explain how to [skill] step by step."
 - Solve: "I can help you fix [problem] quickly."
 - Shortcut: "I have a [checklist/template] that saves time on [task]."
-        </pre>
-      </div>
+          </pre>
+        </div>
 
-      <div class="card">
-        <h3>Your Content Format</h3>
-        <p>
-          Pick ONE format you can repeat:<br>
-          • Text (posts, messages)<br>
-          • Voice (voice notes)<br>
-          • Simple video (talking or screen)<br><br>
-          If you can explain it to a friend, you can monetize it.
-        </p>
-        <pre>
+        <!-- CARD 5 -->
+        <div class="card">
+          <h3>Your Content Format</h3>
+          <p>
+            Pick ONE format you can repeat:<br>
+            • Text (posts, messages)<br>
+            • Voice (voice notes)<br>
+            • Simple video (talking or screen)<br><br>
+            If you can explain it to a friend, you can monetize it.
+          </p>
+          <pre>
 Example formats:
 - Text: Write a 3-step guide or micro-post
 - Voice: Record 2-5 min tips on WhatsApp
 - Video: Screen-share tutorial or talking tips
-        </pre>
-      </div>
+          </pre>
+        </div>
 
-      <div class="card">
-        <h3>Where to Post</h3>
-        <p>
-          Forget algorithms.<br>
-          Choose where people already reply to you:<br>
-          • WhatsApp<br>
-          • X (Twitter)<br>
-          • Facebook<br><br>
-          Conversations create income.
-        </p>
-        <pre>
+        <!-- CARD 6 -->
+        <div class="card">
+          <h3>Where to Post</h3>
+          <p>
+            Forget algorithms.<br>
+            Choose where people already reply to you:<br>
+            • WhatsApp<br>
+            • X (Twitter)<br>
+            • Facebook<br><br>
+            Conversations create income.
+          </p>
+          <pre>
 Example:
 - WhatsApp: Share tips to small groups
 - X: Post a short thread offering guidance
 - Facebook: Join relevant groups and share value
-        </pre>
-      </div>
+          </pre>
+        </div>
 
-      <div class="card">
-        <h3>Your First Offer</h3>
-        <p>
-          Your first offer should be small, clear, and easy to deliver.<br>
-          Price: ₦3,000–₦5,000<br><br>
-          Sell the outcome, not effort.
-        </p>
-        <pre>
+        <!-- CARD 7 -->
+        <div class="card">
+          <h3>Your First Offer</h3>
+          <p>
+            Your first offer should be small, clear, and easy to deliver.<br>
+            Price: ₦3,000–₦5,000<br><br>
+            Sell the outcome, not effort.
+          </p>
+          <pre>
 Example offers:
 - ₦3,000 — I’ll review and improve your CV in 24h
 - ₦5,000 — 30 content ideas for your niche delivered instantly
 - ₦3,000 — 20-min WhatsApp guidance session to start [skill]
-        </pre>
-      </div>
+          </pre>
+        </div>
 
-      <div class="card">
-        <h3>How to Ask (Without Fear)</h3>
-        <p>
-          You don’t announce. You invite.<br>
-          No pressure. The right people respond.
-        </p>
-        <pre>
+        <!-- CARD 8 -->
+        <div class="card">
+          <h3>How to Ask (Without Fear)</h3>
+          <p>
+            You don’t announce. You invite.<br>
+            No pressure. The right people respond.
+          </p>
+          <pre>
 Example scripts:
 - "I help with [skill/problem]. Reply 'YES' if interested."
 - "I’m opening a few spots for [service]. Let me know if you want in."
 - "I can make [result] happen for you. Send 'YES' and we’ll start."
-        </pre>
-      </div>
+          </pre>
+        </div>
 
-      <div class="card">
-        <h3>After Payment</h3>
-        <p>
-          Once someone pays:<br>
-          1. Respond quickly<br>
-          2. Confirm what you’ll deliver<br>
-          3. Deliver simply<br>
-          4. Communicate clearly<br><br>
-          Trust creates repeat income.
-        </p>
-        <pre>
+        <!-- CARD 9 -->
+        <div class="card">
+          <h3>After Payment</h3>
+          <p>
+            Once someone pays:<br>
+            1. Respond quickly<br>
+            2. Confirm what you’ll deliver<br>
+            3. Deliver simply<br>
+            4. Communicate clearly<br><br>
+            Trust creates repeat income.
+          </p>
+          <pre>
 Example delivery messages:
 - "Thanks for your payment! Here’s what I promised: [deliverable]."
 - "Hi [Name], happy to start. You’ll receive [result] by [time]."
 - "Please reply if you have any questions while using this."
-        </pre>
-      </div>
+          </pre>
+        </div>
 
-      <div class="card">
-        <h3>Reflection</h3>
-        <p>
-          Ask yourself:<br>
-          • What worked?<br>
-          • What felt easy?<br>
-          • What confused people?<br><br>
-          This wasn’t luck. You followed steps.
-        </p>
-        <pre>
+        <!-- CARD 10 -->
+        <div class="card">
+          <h3>Reflection</h3>
+          <p>
+            Ask yourself:<br>
+            • What worked?<br>
+            • What felt easy?<br>
+            • What confused people?<br><br>
+            This wasn’t luck. You followed steps.
+          </p>
+          <pre>
 Tip: Write it down. Keep a mini-journal of actions and results.
-        </pre>
+          </pre>
+        </div>
+
       </div>
 
     </div>
@@ -354,7 +371,7 @@ Tip: Write it down. Keep a mini-journal of actions and results.
     <!-- PREMIUM BOX -->
     <div class="card premium-box" id="premiumBox">
       <h3>🔒 Premium Access</h3>
-      <p id="premiumStatus">Step 3 is locked — ₦3,000 one-time access</p>
+      <p id="premiumStatus">Step 3 beyond preview is locked — ₦3,000 one-time access</p>
       <button id="unlockBtn" onclick="unlockPremium()">Unlock Premium – ₦3,000</button>
       <div id="codeSection" style="margin-top:10px;">
         <label for="codeInput"><strong>Enter code if you have one:</strong></label><br>
@@ -381,7 +398,7 @@ Tip: Write it down. Keep a mini-journal of actions and results.
   </footer>
 
   <script>
-    const defaultCode = "MSTEPS2026"; // default test code
+    const defaultCode = "MSTEPS2026";
 
     function unlockPremium() {
       const waLink = "https://wa.me/2347039521202?text=I%20want%20to%20unlock%20MoneySteps%20Premium";
@@ -389,22 +406,21 @@ Tip: Write it down. Keep a mini-journal of actions and results.
     }
 
     function applyPremium() {
-      const step3 = document.getElementById("step3");
+      const premiumContent = document.getElementById("premiumContent");
       const premiumBox = document.getElementById("premiumBox");
       const codeSection = document.getElementById("codeSection");
 
       if(localStorage.getItem("premiumUnlocked") === "yes"){
-        step3.classList.remove("locked");
-        document.getElementById("premiumStatus").innerText = "✅ Premium Active: Content Monetization available";
-        const btn = document.getElementById("unlockBtn");
-        btn.innerText = "✅ Premium Active";
-        btn.disabled = true;
+        premiumContent.classList.remove("hidden");
+        document.getElementById("premiumStatus").innerText = "✅ Premium Active: Full Step 3 available";
+        document.getElementById("unlockBtn").innerText = "✅ Premium Active";
+        document.getElementById("unlockBtn").disabled = true;
         codeSection.style.display = "none";
       }
     }
 
     function saveSkill() {
-      const skill = document.getElementById("skillInput").value.trim();
+      const skill = document.getElementById("skillInput").value;
       if (!skill) { alert("Please enter one skill."); return; }
       localStorage.setItem("chosenSkill", skill);
       document.getElementById("skillStatus").innerText = "✅ Focus saved: " + skill;
@@ -414,7 +430,8 @@ Tip: Write it down. Keep a mini-journal of actions and results.
     function applySkillToStep3() {
       const skill = localStorage.getItem("chosenSkill");
       if (!skill) return;
-      document.querySelectorAll("#step3 .card pre").forEach(card => {
+      const step3Cards = document.querySelectorAll("#step3 pre");
+      step3Cards.forEach(card => {
         card.innerHTML = card.innerHTML.replace(/\[skill\]/g, skill);
       });
     }
