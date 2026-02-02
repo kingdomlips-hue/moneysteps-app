@@ -73,6 +73,25 @@
       border-left: 6px solid gold;
     }
 
+    .premium-active {
+      background: #d4edda;
+      border-left: 6px solid #28a745;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      color: #155724;
+      font-weight: bold;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
     pre {
       background:#f0f0f0;
       padding:10px;
@@ -86,38 +105,10 @@
       color: #777;
       padding: 20px;
     }
-
-    /* Premium Activated Banner */
-    #premiumBanner {
-      position: fixed;
-      top: -60px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #4CAF50;
-      color: white;
-      padding: 15px 25px;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: bold;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      z-index: 9999;
-      transition: top 0.5s ease;
-    }
-
-    #premiumBanner.show {
-      top: 20px;
-    }
-
-    .hidden {
-      display: none;
-    }
   </style>
 </head>
 
 <body>
-
-  <!-- Premium Banner -->
-  <div id="premiumBanner">🎉 Premium Activated!</div>
 
   <header>
     <h1>💰 MoneySteps</h1>
@@ -190,7 +181,8 @@
         but because they try too many things at once.
         <br><br>
         One skill done well<br>
-        beats ten skills done poorly.<br><br>
+        beats ten skills done poorly.
+        <br><br>
         A real income skill:<br>
         • People already pay for it<br>
         • Solves a clear problem<br>
@@ -198,6 +190,9 @@
         <br><br>
         You don’t need passion.<br>
         You need demand.
+        <br><br>
+        One thing at a time.<br>
+        Stop spreading yourself thin.
         <br><br>
         <strong>Go Deeper:</strong><br>
         Read how focus creates income<br>
@@ -209,7 +204,6 @@
           type="text" 
           id="skillInput" 
           placeholder="e.g. Writing, Video editing, Teaching..."
-          style="width:100%; padding:10px; margin-top:8px;"
         />
         <br><br>
         <button onclick="saveSkill()">Save My Focus</button>
@@ -389,13 +383,16 @@ Tip: Write it down. Keep a mini-journal of actions and results.
     <div class="card premium-box" id="premiumBox">
       <h3>🔒 Premium Access</h3>
       <p id="premiumStatus">Step 3 is locked — ₦3,000 one-time access</p>
-      <p><strong>Enter code if you have one:</strong></p>
-      <input type="text" id="premiumCode" placeholder="Enter unlock code" style="width:100%; padding:10px; margin-bottom:8px;">
-      <button onclick="checkCode()">Unlock Premium</button>
-      <p style="margin-top:8px;">Or click below to pay via WhatsApp:</p>
-      <a href="https://wa.me/2347039521202?text=I%20want%20to%20unlock%20MoneySteps%20Premium" target="_blank">
-        <button>Pay & Request Unlock – ₦3,000</button>
+      <p>Click below to request payment info on WhatsApp:</p>
+      <a href="https://wa.me/2347039521202?text=I%20want%20to%20unlock%20MoneySteps%20premium" target="_blank">
+        <button>Unlock Premium – ₦3,000 (One-time)</button>
       </a>
+      <br><br>
+      <label for="premiumCode"><strong>Enter code if you have one:</strong></label><br>
+      <input type="text" id="premiumCode" placeholder="Enter premium code">
+      <br><br>
+      <button onclick="checkCode()">Submit Code</button>
+      <p id="codeStatus"></p>
     </div>
 
     <!-- FEEDBACK CARD -->
@@ -416,36 +413,7 @@ Tip: Write it down. Keep a mini-journal of actions and results.
   </footer>
 
   <script>
-    const DEFAULT_CODE = "TEST123"; // default code for testing
-
-    function checkCode(){
-      const entered = document.getElementById("premiumCode").value.trim();
-      if(entered===DEFAULT_CODE){
-        localStorage.setItem("premiumUnlocked","yes");
-        alert("🎉 Premium unlocked!");
-        applyPremium();
-      }else{
-        alert("❌ Invalid code. Please enter the correct code or pay via WhatsApp.");
-      }
-    }
-
-    function applyPremium(){
-      if(localStorage.getItem("premiumUnlocked")==="yes"){
-        document.getElementById("step3").classList.remove("locked");
-        document.getElementById("premiumStatus").innerText="✅ Premium unlocked: Content Monetization available";
-        const btns = document.querySelectorAll("#premiumBox button");
-        btns.forEach(btn=>{
-          btn.innerText="Premium Active";
-          btn.disabled=true;
-        });
-        document.getElementById("premiumBox").classList.add("hidden");
-
-        // Show floating banner
-        const banner = document.getElementById("premiumBanner");
-        banner.classList.add("show");
-        setTimeout(()=>{ banner.classList.remove("show"); },3000);
-      }
-    }
+    const DEFAULT_TEST_CODE = "TEST123"; // default code for testing
 
     // SAVE USER SKILL
     function saveSkill() {
@@ -455,7 +423,8 @@ Tip: Write it down. Keep a mini-journal of actions and results.
         return;
       }
       localStorage.setItem("chosenSkill", skill);
-      document.getElementById("skillStatus").innerText = "✅ Focus saved: " + skill;
+      document.getElementById("skillStatus").innerText =
+        "✅ Focus saved: " + skill;
       applySkillToStep3();
     }
 
@@ -468,15 +437,44 @@ Tip: Write it down. Keep a mini-journal of actions and results.
       });
     }
 
-    // RUN ON LOAD
-    applyPremium();
+    function checkCode() {
+      const entered = document.getElementById("premiumCode").value.trim();
+      if (!entered) {
+        alert("Please enter your code.");
+        return;
+      }
+      if (entered === DEFAULT_TEST_CODE || localStorage.getItem("premiumUnlocked") === "yes") {
+        localStorage.setItem("premiumUnlocked", "yes");
+        activatePremium();
+      } else {
+        document.getElementById("codeStatus").innerText = "❌ Invalid code. Please try again.";
+      }
+    }
+
+    function activatePremium() {
+      document.getElementById("step3").classList.remove("locked");
+      const premiumBox = document.getElementById("premiumBox");
+      premiumBox.innerHTML = `<div class="premium-active">✅ Premium Active: Content Monetization unlocked</div>`;
+      applySkillToStep3();
+    }
+
+    // ON LOAD
+    if (localStorage.getItem("premiumUnlocked") === "yes") {
+      activatePremium();
+    }
     applySkillToStep3();
 
-    // FIRST-TIME ONBOARDING ALERT
     if (!localStorage.getItem("hasVisited")) {
-      alert("👋 Welcome to MoneySteps!\n\nStart at Step 1.\nDo one step per day.\nDon't rush.\n\nSticking to this is already a success.");
+      alert(
+        "👋 Welcome to MoneySteps!\n\n" +
+        "Start at Step 1.\n" +
+        "Do one step per day.\n" +
+        "Don't rush.\n\n" +
+        "Sticking to this is already a success."
+      );
       localStorage.setItem("hasVisited", "yes");
     }
   </script>
+
 </body>
 </html>
