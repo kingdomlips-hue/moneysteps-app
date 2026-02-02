@@ -86,6 +86,15 @@
       color: #777;
       padding: 20px;
     }
+
+    input[type=text] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
   </style>
 </head>
 
@@ -130,23 +139,26 @@
         that pays better long-term.
       </p>
     </div>
-<div class="card">
-  <h2>Who MoneySteps is For</h2>
-  <p>
-    ✅ Beginners<br>
-    ✅ People tired of confusion<br>
-    ✅ Anyone starting with little money or nothing
-  </p>
-  <p>
-    ❌ Not for:<br>
-    ❌ Get rich quick seekers<br>
-    ❌ Crypto hype chasers<br>
-    ❌ Anyone not ready to learn
-  </p>
-  <p style="margin-top:10px; font-style:italic; opacity:0.8;">
-    💡 Tip: If this describes you, keep going! Every step you take is progress.
-  </p>
-</div>
+
+    <!-- WHO MONEYSTEPS IS FOR -->
+    <div class="card">
+      <h2>Who MoneySteps is For</h2>
+      <p>
+        ✅ Beginners<br>
+        ✅ People tired of confusion<br>
+        ✅ Anyone starting with little money or nothing
+      </p>
+      <p>
+        ❌ Not for:<br>
+        ❌ Get rich quick seekers<br>
+        ❌ Crypto hype chasers<br>
+        ❌ Anyone not ready to learn
+      </p>
+      <p style="margin-top:10px; font-style:italic; opacity:0.8;">
+        💡 Tip: If this describes you, keep going! Every step you take is progress.
+      </p>
+    </div>
+
     <!-- STEP 2 -->
     <div class="card">
       <h2>Step 2: Pick ONE Income Skill</h2>
@@ -179,9 +191,8 @@
           type="text" 
           id="skillInput" 
           placeholder="e.g. Writing, Video editing, Teaching..."
-          style="width:100%; padding:10px; margin-top:8px;"
         />
-        <br><br>
+        <br>
         <button onclick="saveSkill()">Save My Focus</button>
         <p id="skillStatus"></p>
         <strong>Today’s Action:</strong><br>
@@ -359,6 +370,8 @@ Tip: Write it down. Keep a mini-journal of actions and results.
     <div class="card premium-box">
       <h3>🔒 Premium Access</h3>
       <p id="premiumStatus">Step 3 is locked — ₦3,000 one-time access</p>
+      <input type="text" id="premiumCodeInput" placeholder="Enter code if you have one">
+      <br>
       <button id="unlockBtn" onclick="unlockPremium()">Unlock Premium – ₦3,000 (One-time)</button>
     </div>
 
@@ -381,11 +394,19 @@ Tip: Write it down. Keep a mini-journal of actions and results.
 
   <!-- SCRIPTS -->
   <script>
+    const PREMIUM_CODE = "MONEYSTEPS2026"; // Example manual code
+
     // PREMIUM LOGIC
     function unlockPremium() {
-      localStorage.setItem("premiumUnlocked", "yes");
-      alert("🎉 Premium Unlocked! Content Monetization access granted.");
-      applyPremium();
+      const inputCode = document.getElementById("premiumCodeInput").value.trim();
+
+      if (inputCode === PREMIUM_CODE || !inputCode) {
+        localStorage.setItem("premiumUnlocked", "yes");
+        alert("🎉 Premium Unlocked! Content Monetization access granted.");
+        applyPremium();
+      } else {
+        alert("❌ Invalid code. Please contact WhatsApp support to unlock.");
+      }
     }
 
     function applyPremium() {
@@ -396,6 +417,7 @@ Tip: Write it down. Keep a mini-journal of actions and results.
         const btn = document.getElementById("unlockBtn");
         btn.innerText = "Premium Active";
         btn.disabled = true;
+        document.getElementById("premiumCodeInput").disabled = true;
       }
     }
 
