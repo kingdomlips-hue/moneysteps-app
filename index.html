@@ -53,6 +53,10 @@
       content: "🔒 ";
     }
 
+    .hidden {
+      display: none;
+    }
+
     button {
       background: #444;
       color: white;
@@ -85,10 +89,6 @@
       font-size: 14px;
       color: #777;
       padding: 20px;
-    }
-
-    .hidden {
-      display: none;
     }
 
   </style>
@@ -241,7 +241,7 @@
         </p>
       </div>
 
-      <!-- HIDDEN PREMIUM CARDS 4-10 -->
+      <!-- PREMIUM CONTENT STARTS HERE (FULLY HIDDEN) -->
       <div id="premiumContent" class="hidden">
 
         <!-- CARD 4 -->
@@ -365,13 +365,14 @@ Tip: Write it down. Keep a mini-journal of actions and results.
         </div>
 
       </div>
+      <!-- PREMIUM CONTENT ENDS HERE -->
 
     </div>
 
     <!-- PREMIUM BOX -->
     <div class="card premium-box" id="premiumBox">
       <h3>🔒 Premium Access</h3>
-      <p id="premiumStatus">Step 3 beyond preview is locked — ₦3,000 one-time access</p>
+      <p id="premiumStatus">Step 3 content locked — ₦3,000 one-time access</p>
       <button id="unlockBtn" onclick="unlockPremium()">Unlock Premium – ₦3,000</button>
       <div id="codeSection" style="margin-top:10px;">
         <label for="codeInput"><strong>Enter code if you have one:</strong></label><br>
@@ -398,7 +399,7 @@ Tip: Write it down. Keep a mini-journal of actions and results.
   </footer>
 
   <script>
-    const defaultCode = "MSTEPS2026";
+    const defaultCode = "MSTEPS2026"; // default test code
 
     function unlockPremium() {
       const waLink = "https://wa.me/2347039521202?text=I%20want%20to%20unlock%20MoneySteps%20Premium";
@@ -406,15 +407,22 @@ Tip: Write it down. Keep a mini-journal of actions and results.
     }
 
     function applyPremium() {
-      const premiumContent = document.getElementById("premiumContent");
+      const step3 = document.getElementById("step3");
       const premiumBox = document.getElementById("premiumBox");
       const codeSection = document.getElementById("codeSection");
+      const premiumContent = document.getElementById("premiumContent");
 
       if(localStorage.getItem("premiumUnlocked") === "yes"){
+        step3.classList.remove("locked");
+        document.getElementById("premiumStatus").innerText = "✅ Premium Active: Content Monetization available";
+        const btn = document.getElementById("unlockBtn");
+        btn.innerText = "✅ Premium Active";
+        btn.disabled = true;
+
+        // Show the full premium content
         premiumContent.classList.remove("hidden");
-        document.getElementById("premiumStatus").innerText = "✅ Premium Active: Full Step 3 available";
-        document.getElementById("unlockBtn").innerText = "✅ Premium Active";
-        document.getElementById("unlockBtn").disabled = true;
+
+        // Hide code input section after unlock
         codeSection.style.display = "none";
       }
     }
@@ -430,7 +438,7 @@ Tip: Write it down. Keep a mini-journal of actions and results.
     function applySkillToStep3() {
       const skill = localStorage.getItem("chosenSkill");
       if (!skill) return;
-      const step3Cards = document.querySelectorAll("#step3 pre");
+      const step3Cards = document.querySelectorAll("#step3 .card pre");
       step3Cards.forEach(card => {
         card.innerHTML = card.innerHTML.replace(/\[skill\]/g, skill);
       });
