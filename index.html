@@ -87,19 +87,37 @@
       padding: 20px;
     }
 
-    input[type="text"] {
-      width: 100%;
-      padding: 10px;
-      margin-top: 8px;
-      margin-bottom: 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
+    /* Premium Activated Banner */
+    #premiumBanner {
+      position: fixed;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #4CAF50;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 8px;
       font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      z-index: 9999;
+      transition: top 0.5s ease;
+    }
+
+    #premiumBanner.show {
+      top: 20px;
+    }
+
+    .hidden {
+      display: none;
     }
   </style>
 </head>
 
 <body>
+
+  <!-- Premium Banner -->
+  <div id="premiumBanner">🎉 Premium Activated!</div>
 
   <header>
     <h1>💰 MoneySteps</h1>
@@ -141,6 +159,7 @@
       </p>
     </div>
 
+    <!-- WHO MONEYSTEPS IS FOR -->
     <div class="card">
       <h2>Who MoneySteps is For</h2>
       <p>
@@ -171,8 +190,7 @@
         but because they try too many things at once.
         <br><br>
         One skill done well<br>
-        beats ten skills done poorly.
-        <br><br>
+        beats ten skills done poorly.<br><br>
         A real income skill:<br>
         • People already pay for it<br>
         • Solves a clear problem<br>
@@ -187,8 +205,13 @@
         <a href="https://quietrebuild.blogspot.com/2026/01/creating-income.html">Read the full post →</a>
         <br><br>
         <label for="skillInput"><strong>Your chosen skill:</strong></label><br>
-        <input type="text" id="skillInput" placeholder="e.g. Writing, Video editing, Teaching..." />
-        <br>
+        <input 
+          type="text" 
+          id="skillInput" 
+          placeholder="e.g. Writing, Video editing, Teaching..."
+          style="width:100%; padding:10px; margin-top:8px;"
+        />
+        <br><br>
         <button onclick="saveSkill()">Save My Focus</button>
         <p id="skillStatus"></p>
         <strong>Today’s Action:</strong><br>
@@ -363,16 +386,16 @@ Tip: Write it down. Keep a mini-journal of actions and results.
     </div>
 
     <!-- PREMIUM BOX -->
-    <div class="card premium-box">
+    <div class="card premium-box" id="premiumBox">
       <h3>🔒 Premium Access</h3>
       <p id="premiumStatus">Step 3 is locked — ₦3,000 one-time access</p>
-      <button id="unlockBtn" onclick="goToWhatsApp()">Unlock Premium – ₦3,000</button>
-
-      <div id="codeSection" style="margin-top:10px;">
-        <label for="premiumCodeInput"><strong>Enter code if you have one:</strong></label>
-        <input type="text" id="premiumCodeInput" placeholder="Enter code here"/>
-        <button onclick="enterCode()">Submit Code</button>
-      </div>
+      <p><strong>Enter code if you have one:</strong></p>
+      <input type="text" id="premiumCode" placeholder="Enter unlock code" style="width:100%; padding:10px; margin-bottom:8px;">
+      <button onclick="checkCode()">Unlock Premium</button>
+      <p style="margin-top:8px;">Or click below to pay via WhatsApp:</p>
+      <a href="https://wa.me/2347039521202?text=I%20want%20to%20unlock%20MoneySteps%20Premium" target="_blank">
+        <button>Pay & Request Unlock – ₦3,000</button>
+      </a>
     </div>
 
     <!-- FEEDBACK CARD -->
@@ -392,45 +415,39 @@ Tip: Write it down. Keep a mini-journal of actions and results.
     © 2026 MoneySteps • Built for beginners
   </footer>
 
-  <!-- SCRIPTS -->
   <script>
-    // Valid codes (default test + issued codes)
-    const VALID_CODES = ["TEST123", "ABC123", "XYZ456"];
+    const DEFAULT_CODE = "TEST123"; // default code for testing
 
-    function goToWhatsApp() {
-      const phone = "2347039521202";
-      const skill = document.getElementById("skillInput").value.trim() || "User";
-      const message = encodeURIComponent(
-        `Hello, I want to unlock MoneySteps Step 3 Premium – ₦3,000. My name/skill: ${skill}`
-      );
-      window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
-    }
-
-    function enterCode() {
-      const input = document.getElementById("premiumCodeInput").value.trim();
-      if (VALID_CODES.includes(input)) {
-        localStorage.setItem("premiumUnlocked", "yes");
+    function checkCode(){
+      const entered = document.getElementById("premiumCode").value.trim();
+      if(entered===DEFAULT_CODE){
+        localStorage.setItem("premiumUnlocked","yes");
+        alert("🎉 Premium unlocked!");
         applyPremium();
-        alert("🎉 Premium Unlocked! Content Monetization access granted.");
-      } else {
-        alert("❌ Invalid code. Please check and try again.");
+      }else{
+        alert("❌ Invalid code. Please enter the correct code or pay via WhatsApp.");
       }
     }
 
-    function applyPremium() {
-      if (localStorage.getItem("premiumUnlocked") === "yes") {
+    function applyPremium(){
+      if(localStorage.getItem("premiumUnlocked")==="yes"){
         document.getElementById("step3").classList.remove("locked");
-        document.getElementById("premiumStatus").innerText =
-          "✅ Premium unlocked: Content Monetization available";
-        const btn = document.getElementById("unlockBtn");
-        btn.innerText = "Premium Active";
-        btn.disabled = true;
+        document.getElementById("premiumStatus").innerText="✅ Premium unlocked: Content Monetization available";
+        const btns = document.querySelectorAll("#premiumBox button");
+        btns.forEach(btn=>{
+          btn.innerText="Premium Active";
+          btn.disabled=true;
+        });
+        document.getElementById("premiumBox").classList.add("hidden");
 
-        const codeSection = document.getElementById("codeSection");
-        if (codeSection) codeSection.style.display = "none";
+        // Show floating banner
+        const banner = document.getElementById("premiumBanner");
+        banner.classList.add("show");
+        setTimeout(()=>{ banner.classList.remove("show"); },3000);
       }
     }
 
+    // SAVE USER SKILL
     function saveSkill() {
       const skill = document.getElementById("skillInput").value;
       if (!skill) {
@@ -438,35 +455,28 @@ Tip: Write it down. Keep a mini-journal of actions and results.
         return;
       }
       localStorage.setItem("chosenSkill", skill);
-      document.getElementById("skillStatus").innerText =
-        "✅ Focus saved: " + skill;
+      document.getElementById("skillStatus").innerText = "✅ Focus saved: " + skill;
       applySkillToStep3();
     }
 
     function applySkillToStep3() {
       const skill = localStorage.getItem("chosenSkill");
       if (!skill) return;
-
       const step3Cards = document.querySelectorAll("#step3 .card pre");
       step3Cards.forEach(card => {
         card.innerHTML = card.innerHTML.replace(/\[skill\]/g, skill);
       });
     }
 
+    // RUN ON LOAD
     applyPremium();
     applySkillToStep3();
 
+    // FIRST-TIME ONBOARDING ALERT
     if (!localStorage.getItem("hasVisited")) {
-      alert(
-        "👋 Welcome to MoneySteps!\n\n" +
-        "Start at Step 1.\n" +
-        "Do one step per day.\n" +
-        "Don't rush.\n\n" +
-        "Sticking to this is already a success."
-      );
+      alert("👋 Welcome to MoneySteps!\n\nStart at Step 1.\nDo one step per day.\nDon't rush.\n\nSticking to this is already a success.");
       localStorage.setItem("hasVisited", "yes");
     }
   </script>
-
 </body>
 </html>
