@@ -6,235 +6,372 @@
   <title>MoneySteps</title>
 
   <style>
-    body { margin: 0; font-family: Arial, sans-serif; background: #f2f2f2; color: #222; }
-    header { background: #0f0f0f; color: white; padding: 40px 20px; text-align: center; }
-    header h1 { margin: 0; font-size: 32px; }
-    header p { margin-top: 10px; font-size: 16px; opacity: 0.85; }
-    section { padding: 20px; max-width: 700px; margin: auto; }
-    .card { background: white; padding: 20px; margin-bottom: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
-    .locked { opacity: 0.45; }
-    button { background: #444; color: white; border: none; padding: 12px 20px; border-radius: 8px; font-size: 16px; cursor: pointer; }
-    button:disabled { background: #aaa; cursor: not-allowed; }
-    .premium-box { background: #fff2cc; border-left: 6px solid gold; }
-    footer { text-align: center; font-size: 14px; color: #777; padding: 20px; }
-    .hidden { display: none; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      color: #222;
+    }
+
+    header {
+      background: #0f0f0f;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+    }
+
+    header p {
+      margin-top: 10px;
+      font-size: 16px;
+      opacity: 0.85;
+    }
+
+    section {
+      padding: 20px;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .locked {
+      display: none; /* hidden until unlocked */
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .fade-in {
+      display: block !important;
+      opacity: 1 !important;
+    }
+
+    button {
+      background: #444;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      background: #aaa;
+      cursor: not-allowed;
+    }
+
+    .premium-box {
+      background: #fff2cc;
+      border-left: 6px solid gold;
+      text-align: center;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    pre {
+      background:#f0f0f0;
+      padding:10px;
+      border-radius:6px;
+      overflow-x:auto;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+      padding: 20px;
+    }
+
   </style>
 </head>
 
 <body>
 
-<header>
-  <h1>💰 MoneySteps</h1>
-  <p>Daily steps to build income — one action at a time</p>
-</header>
+  <header>
+    <h1>💰 MoneySteps</h1>
+    <p>Daily steps to build income — one action at a time</p>
+  </header>
 
-<section>
+  <section>
 
-  <!-- STEP 1 -->
-  <div class="card">
-    <h2>Step 1: Income Mindset</h2>
-    <p>
-      Understand how money really works and why most people stay broke.
-      <br><br>
-      Most people are not broke because they don’t work hard. They stay broke because they trade time for money without building skills or systems.
-      <br><br>
-      Money flows to:<br>
-      • Skills that solve real problems<br>
-      • Systems that work repeatedly<br>
-      • People who control value, not just effort
-      <br><br>
-      Being busy is not the same as building income.
-      <br><br>
-      The real goal is to move from earning money to creating value.
-      <br><br>
-      <strong>Go Deeper:</strong><br>
-      Read the full breakdown on how money actually works<br>
-      and why the hard-working stay broke.<br>
-      <a href="https://quietrebuild.blogspot.com/2026/01/income-mindset.html">Read the full post →</a>
-      <br><br>
-      <strong>Today’s Action:</strong><br>
-      Write down one way you currently earn money.<br>
-      Then write one skill you could learn that pays better long-term.
-    </p>
-  </div>
-
-  <!-- WHO MONEYSTEPS IS FOR -->
-  <div class="card">
-    <h2>Who MoneySteps is For</h2>
-    <p>
-      ✅ Beginners<br>
-      ✅ People tired of confusion<br>
-      ✅ Anyone starting with little money or nothing
-    </p>
-    <p>
-      ❌ Not for:<br>
-      ❌ Get rich quick seekers<br>
-      ❌ Crypto hype chasers<br>
-      ❌ Anyone not ready to learn
-    </p>
-    <p style="margin-top:10px; font-style:italic; opacity:0.8;">
-      💡 Tip: If this describes you, keep going! Every step you take is progress.
-    </p>
-  </div>
-
-  <!-- STEP 2 -->
-  <div class="card">
-    <h2>Step 2: Pick ONE Income Skill</h2>
-    <p>
-      Stop chasing everything. Focus creates income.
-      <br><br>
-      Most people fail online not because opportunities don’t work, but because they try too many things at once.
-      <br><br>
-      One skill done well beats ten skills done poorly.
-      <br><br>
-      A real income skill:<br>
-      • People already pay for it<br>
-      • Solves a clear problem<br>
-      • Improves with practice
-      <br><br>
-      You don’t need passion. You need demand.
-      <br><br>
-      <strong>Go Deeper:</strong><br>
-      Read how focus creates income and how to choose the right skill.<br>
-      <a href="https://quietrebuild.blogspot.com/2026/01/creating-income.html">Read the full post →</a>
-      <br><br>
-      <label for="skillInput"><strong>Your chosen skill:</strong></label><br>
-      <input type="text" id="skillInput" placeholder="e.g. Writing, Video editing, Teaching..." style="width:100%; padding:10px; margin-top:8px;" />
-      <br><br>
-      <button onclick="saveSkill()">Save My Focus</button>
-      <p id="skillStatus"></p>
-      <strong>Today’s Action:</strong><br>
-      Write down 3 skills you could learn.<br>
-      Circle ONE that people already pay for.
-    </p>
-  </div>
-
-  <!-- STEP 3 -->
-  <div class="card" id="step3">
-    <h2>Step 3: Content Monetization</h2>
-
-    <!-- Cards 1–3 visible to all -->
+    <!-- STEP 1 -->
     <div class="card">
-      <h3>Welcome</h3>
-      <p>You chose focus. That alone puts you ahead. You don’t need followers, perfection, or rush. This step proves <strong>income can be created intentionally</strong>.</p>
+      <h2>Step 1: Income Mindset</h2>
+      <p>
+        Understand how money really works<br>
+        and why most people stay broke.
+        <br><br>
+        Most people are not broke because they don’t work hard.<br>
+        They stay broke because they trade time for money<br>
+        without building skills or systems.
+        <br><br>
+        Money flows to:<br>
+        • Skills that solve real problems<br>
+        • Systems that work repeatedly<br>
+        • People who control value, not just effort
+        <br><br>
+        Being busy is not the same as building income.
+        <br><br>
+        The real goal is to move from earning money<br>
+        to creating value.
+        <br><br>
+        <strong>Go Deeper:</strong><br>
+        Read the full breakdown on how money actually works<br>
+        and why the hard-working stay broke.<br>
+        <a href="https://quietrebuild.blogspot.com/2026/01/income-mindset.html">Read the full post →</a>
+        <br><br>
+        <strong>Today’s Action:</strong><br>
+        Write down one way you currently earn money.<br>
+        Then write one skill you could learn<br>
+        that pays better long-term.
+      </p>
     </div>
 
+    <!-- WHO MONEYSTEPS IS FOR -->
     <div class="card">
-      <h3>What Success Means</h3>
-      <p>Success is NOT going viral or quitting your job. Success = ₦3,000–₦5,000 earned from ONE skill and ONE clear action. Small. Real. Repeatable.</p>
+      <h2>Who MoneySteps is For</h2>
+      <p>
+        ✅ Beginners<br>
+        ✅ People tired of confusion<br>
+        ✅ Anyone starting with little money or nothing
+      </p>
+      <p>
+        ❌ Not for:<br>
+        ❌ Get rich quick seekers<br>
+        ❌ Crypto hype chasers<br>
+        ❌ Anyone not ready to learn
+      </p>
+      <p style="margin-top:10px; font-style:italic; opacity:0.8;">
+        💡 Tip: If this describes you, keep going! Every step you take is progress.
+      </p>
     </div>
 
+    <!-- STEP 2 -->
     <div class="card">
-      <h3>How Content Makes Money</h3>
-      <p>People pay when a problem is clear, solution is simple, and the person is trustworthy.<br>
-      Content monetization = <strong>show value → offer help → get paid</strong></p>
+      <h2>Step 2: Pick ONE Income Skill</h2>
+      <p>
+        Stop chasing everything.<br>
+        Focus creates income.
+        <br><br>
+        Most people fail online<br>
+        not because opportunities don’t work,<br>
+        but because they try too many things at once.
+        <br><br>
+        One skill done well<br>
+        beats ten skills done poorly.
+        <br><br>
+        A real income skill:<br>
+        • People already pay for it<br>
+        • Solves a clear problem<br>
+        • Improves with practice
+        <br><br>
+        You don’t need passion.<br>
+        You need demand.
+        <br><br>
+        <strong>Go Deeper:</strong><br>
+        Read how focus creates income<br>
+        and how to choose the right skill.<br>
+        <a href="https://quietrebuild.blogspot.com/2026/01/creating-income.html">Read the full post →</a>
+        <br><br>
+        <label for="skillInput"><strong>Your chosen skill:</strong></label><br>
+        <input 
+          type="text" 
+          id="skillInput" 
+          placeholder="e.g. Writing, Video editing, Teaching..."
+          style="width:100%; padding:10px; margin-top:8px;"
+        />
+        <br><br>
+        <button onclick="saveSkill()">Save My Focus</button>
+        <p id="skillStatus"></p>
+        <strong>Today’s Action:</strong><br>
+        Write down 3 skills you could learn.<br>
+        Circle ONE that people already pay for.
+      </p>
     </div>
 
-    <!-- Premium content hidden until unlock -->
-    <div id="premiumContent" class="hidden">
-      <h3>What Will You Monetize?</h3>
-      <p>Choose ONE only:<br>
-      • Teach — explain something clearly<br>
-      • Solve — fix a problem<br>
-      • Shortcut — save time with steps or templates<br>
-      One skill. One angle.</p>
-      <pre>
-Example prompts:
+    <!-- STEP 3 -->
+    <div class="card" id="step3">
+      <h2>Step 3: Content Monetization</h2>
+
+      <!-- VISIBLE INTRO -->
+      <div class="card">
+        <h3>Welcome</h3>
+        <p>
+          You chose focus. That alone puts you ahead.<br><br>
+          You don’t need followers.<br>
+          You don’t need perfection.<br>
+          You don’t need to rush.<br><br>
+          This step is about proving one thing:<br>
+          <strong>income can be created intentionally.</strong>
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>What Success Means</h3>
+        <p>
+          Success is NOT going viral or quitting your job.<br>
+          Success =<br>
+          • ₦3,000–₦5,000 earned<br>
+          • From ONE skill<br>
+          • From ONE clear action<br><br>
+          Small. Real. Repeatable.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>How Content Makes Money</h3>
+        <p>
+          People pay when:<br>
+          • A problem is clear<br>
+          • The solution is simple<br>
+          • The person feels trustworthy<br><br>
+          Content monetization = <strong>show value → offer help → get paid</strong>
+        </p>
+      </div>
+
+      <!-- UNLOCK BUTTON -->
+      <div class="premium-box" id="premiumPrompt">
+        <p>🔒 Unlock the full Step 3 content and start monetizing effectively!</p>
+        <button onclick="unlockPremium()">Unlock Premium →</button>
+      </div>
+
+      <!-- PREMIUM CONTENT HIDDEN -->
+      <div id="premiumContent" class="locked">
+        <p><strong>What Will You Monetize?</strong><br>
+        Choose ONE only: Teach, Solve, or Shortcut. Focus on one skill and one angle.</p>
+        <pre>
+Example prompts to pick your angle:
 - Teach: "I can explain how to [skill] step by step."
 - Solve: "I can help you fix [problem] quickly."
 - Shortcut: "I have a [checklist/template] that saves time on [task]."
-      </pre>
+        </pre>
 
-      <h3>Your Content Format</h3>
-      <p>Pick ONE format:<br>
-      • Text (posts, messages)<br>
-      • Voice (voice notes)<br>
-      • Simple video (talking or screen)</p>
+        <p><strong>Your Content Format:</strong> Pick ONE format: Text, Voice, or Simple Video. Repeatable content is key.</p>
+        <pre>
+Example formats:
+- Text: Write a 3-step guide or micro-post
+- Voice: Record 2-5 min tips on WhatsApp
+- Video: Screen-share tutorial or talking tips
+        </pre>
 
-      <h3>Where to Post</h3>
-      <p>Choose where people already respond:<br>
-      • WhatsApp<br>• X (Twitter)<br>• Facebook</p>
+        <p><strong>Where to Post:</strong> Choose platforms where people already interact: WhatsApp, X, Facebook.</p>
+        <pre>
+Example:
+- WhatsApp: Share tips to small groups
+- X: Post a short thread offering guidance
+- Facebook: Join relevant groups and share value
+        </pre>
 
-      <h3>Your First Offer</h3>
-      <p>Small, clear, easy to deliver. Price: ₦3,000–₦5,000. Sell the outcome, not effort.</p>
+        <p><strong>Your First Offer:</strong> Small, clear, easy to deliver. Price: ₦3,000–₦5,000.</p>
+        <pre>
+Example offers:
+- ₦3,000 — I’ll review and improve your CV in 24h
+- ₦5,000 — 30 content ideas for your niche delivered instantly
+- ₦3,000 — 20-min WhatsApp guidance session to start [skill]
+        </pre>
 
-      <h3>How to Ask (Without Fear)</h3>
-      <p>Invite people, no pressure. The right ones respond.</p>
+        <p><strong>How to Ask (Without Fear):</strong> Invite, don’t announce. The right people respond.</p>
+        <pre>
+Example scripts:
+- "I help with [skill/problem]. Reply 'YES' if interested."
+- "I’m opening a few spots for [service]. Let me know if you want in."
+- "I can make [result] happen for you. Send 'YES' and we’ll start."
+        </pre>
 
-      <h3>After Payment</h3>
-      <p>Respond quickly, confirm, deliver simply, communicate clearly. Trust creates repeat income.</p>
+        <p><strong>After Payment:</strong> Deliver simply and communicate clearly.</p>
+        <pre>
+Example delivery messages:
+- "Thanks for your payment! Here’s what I promised: [deliverable]."
+- "Hi [Name], happy to start. You’ll receive [result] by [time]."
+- "Please reply if you have any questions while using this."
+        </pre>
 
-      <h3>Reflection</h3>
-      <p>Ask yourself: What worked? What felt easy? What confused people?<br>Keep a mini-journal of actions and results.</p>
+        <p><strong>Reflection:</strong> Track your results, note what worked and what didn’t.</p>
+        <pre>
+Tip: Write it down. Keep a mini-journal of actions and results.
+        </pre>
+      </div>
+
     </div>
 
-    <!-- Unlock button -->
-    <div class="card premium-box">
-      <p>🔒 Full Step 3 is premium. Unlock to access the complete content below:</p>
-      <input type="text" id="codeInput" placeholder="Enter your one-time code" style="width:100%; padding:8px; margin-top:5px;" />
-      <button onclick="enterCode()">Unlock Premium</button>
-      <p id="premiumStatus"></p>
+    <!-- FEEDBACK CARD -->
+    <div class="card">
+      <h3>💬 Give Feedback</h3>
+      <p>We’d love to hear your thoughts! Click below to send a message on WhatsApp.</p>
+      <a href="https://wa.me/2347039521202" target="_blank">
+        <button style="background:#25D366; color:white; padding:10px 20px; border:none; border-radius:6px; cursor:pointer;">
+          Send Feedback on WhatsApp
+        </button>
+      </a>
     </div>
 
-  </div>
+  </section>
 
-  <!-- Feedback -->
-  <div class="card">
-    <h3>💬 Give Feedback</h3>
-    <p>We’d love to hear your thoughts! Click below to send a message on WhatsApp.</p>
-    <a href="https://wa.me/2347039521202" target="_blank">
-      <button style="background:#25D366; color:white;">Send Feedback on WhatsApp</button>
-    </a>
-  </div>
+  <footer>
+    © 2026 MoneySteps • Built for beginners
+  </footer>
 
-</section>
+  <script>
+    const defaultCode = "MSTEPS2026"; // default test code
 
-<footer>© 2026 MoneySteps • Built for beginners</footer>
-
-<script>
-  // Admin-generated one-time codes
-  let adminCodes = ["USER001","USER002","USER003"]; // add more codes here
-
-  function saveSkill() {
-    const skill = document.getElementById("skillInput").value.trim();
-    if(!skill){ alert("Please enter one skill."); return; }
-    localStorage.setItem("chosenSkill", skill);
-    alert("✅ Focus saved: " + skill);
-    applySkill();
-  }
-
-  function applySkill(){
-    const skill = localStorage.getItem("chosenSkill");
-    if(!skill) return;
-    document.querySelectorAll("#premiumContent pre").forEach(pre => {
-      pre.innerHTML = pre.innerHTML.replace(/\[skill\]/g, skill);
-    });
-  }
-
-  function enterCode(){
-    const code = document.getElementById("codeInput").value.trim().toUpperCase();
-    if(!code){ alert("Enter a code."); return; }
-
-    if(adminCodes.includes(code)){
-      localStorage.setItem("premiumUnlocked", "yes");
-      adminCodes = adminCodes.filter(c => c !== code); // mark used
-      document.getElementById("premiumContent").classList.remove("hidden");
-      document.getElementById("premiumStatus").innerText = "✅ Premium unlocked!";
-      document.getElementById("codeInput").value = "";
-    } else {
-      alert("❌ Invalid or already used code.");
+    function unlockPremium() {
+      const code = prompt("Enter your premium code or leave empty to use WhatsApp payment:");
+      if(code === defaultCode){
+        localStorage.setItem("premiumUnlocked","yes");
+        showPremiumContent();
+        alert("🎉 Premium unlocked via code!");
+      } else if(code === "" || code === null) {
+        const waLink = "https://wa.me/2347039521202?text=I%20want%20to%20unlock%20MoneySteps%20Premium";
+        window.open(waLink, "_blank");
+      } else {
+        alert("❌ Invalid code. Please check with support.");
+      }
     }
-  }
 
-  // On load: apply skill and unlock if previously unlocked
-  window.onload = function(){
-    applySkill();
-    if(localStorage.getItem("premiumUnlocked") === "yes"){
-      document.getElementById("premiumContent").classList.remove("hidden");
-      document.getElementById("premiumStatus").innerText = "✅ Premium already unlocked";
+    function showPremiumContent(){
+      const premium = document.getElementById("premiumContent");
+      const promptBox = document.getElementById("premiumPrompt");
+      premium.classList.add("fade-in");
+      promptBox.style.display = "none";
     }
-  }
-</script>
+
+    function saveSkill() {
+      const skill = document.getElementById("skillInput").value;
+      if (!skill) { alert("Please enter one skill."); return; }
+      localStorage.setItem("chosenSkill", skill);
+      document.getElementById("skillStatus").innerText = "✅ Focus saved: " + skill;
+      applySkillToPremium();
+    }
+
+    function applySkillToPremium() {
+      const skill = localStorage.getItem("chosenSkill");
+      if (!skill) return;
+      const preTags = document.querySelectorAll("#premiumContent pre");
+      preTags.forEach(pre => {
+        pre.innerHTML = pre.innerHTML.replace(/\[skill\]/g, skill);
+      });
+    }
+
+    // RUN ON LOAD
+    applyPremium();
+    applySkillToPremium();
+
+    if (!localStorage.getItem("hasVisited")) {
+      alert("👋 Welcome to MoneySteps!\n\nStart at Step 1.\nDo one step per day.\nDon't rush.\n\nSticking to this is already a success.");
+      localStorage.setItem("hasVisited", "yes");
+    }
+  </script>
 
 </body>
 </html>
