@@ -447,39 +447,17 @@ function updatePremiumUI(isUnlocked) {
     }
 
   function enterCode() {
-  const codeInput = document.getElementById("codeInput");
-  const code = codeInput.value.trim();
-  const usedCodes = JSON.parse(localStorage.getItem("usedCodes") || "[]");
-
-  // List of valid codes (you can add more)
-  const validCodes = ["USER001", "USER002", "MSTEPS2026"]; // Add all your codes here
-
-  if (!code) {
-    alert("❌ Please enter a code.");
-    return;
-  }
-
-  if (!validCodes.includes(code)) {
+  const code = document.getElementById("codeInput").value.trim();
+  if (validCodes.includes(code)) {
+    localStorage.setItem("premiumUnlocked", "yes");
+    applyPremium();
+    alert("🎉 Premium unlocked via code!");
+    document.getElementById("codeInput").value = "";
+  } else {
     alert("❌ Invalid code. Please check with support.");
-    return;
   }
-
-  if (usedCodes.includes(code)) {
-    alert("⚠️ This code has already been used.");
-    return;
-  }
-
-  // Mark code as used
-  usedCodes.push(code);
-  localStorage.setItem("usedCodes", JSON.stringify(usedCodes));
-
-  // Unlock premium
-  localStorage.setItem("premiumUnlocked", "yes");
-  updatePremiumUI(true);
-
-  alert("🎉 Premium unlocked via code!");
-  codeInput.value = "";
-}  
+    }
+    
     // RUN ON LOAD
     applyPremium();
     applySkillToPremium();
