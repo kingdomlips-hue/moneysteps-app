@@ -448,11 +448,20 @@ function updatePremiumUI(isUnlocked) {
 
     function enterCode() {
   const code = document.getElementById("codeInput").value.trim();
-  if (validCodes.includes(code)) {
+  let usedCodes = JSON.parse(localStorage.getItem("usedCodes") || "[]");
+
+  if (validCodes.includes(code) && !usedCodes.includes(code)) {
+    // Mark as used
+    usedCodes.push(code);
+    localStorage.setItem("usedCodes", JSON.stringify(usedCodes));
+
+    // Unlock premium
     localStorage.setItem("premiumUnlocked", "yes");
     applyPremium();
     alert("🎉 Premium unlocked via code!");
     document.getElementById("codeInput").value = "";
+  } else if (usedCodes.includes(code)) {
+    alert("❌ This code has already been used.");
   } else {
     alert("❌ Invalid code. Please check with support.");
   }
