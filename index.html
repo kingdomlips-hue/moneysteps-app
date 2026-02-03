@@ -386,7 +386,7 @@ Tip: Write it down. Keep a mini-journal of actions and results.
   </footer>
 
   <script>
-    const defaultCode = "MSTEPS2026"; // default test code
+  const validCodes = ["MSTEPS2026", "USER001", "USER002"];
 // === ADMIN-GENERATED CODES ===
 // Store codes here. Each code can be used only once.
 // Format: { "CODE123": false, "CODE456": false }
@@ -446,27 +446,17 @@ function updatePremiumUI(isUnlocked) {
       });
     }
 
-    function enterCode(){
+    function enterCode() {
   const code = document.getElementById("codeInput").value.trim();
-
-  if(premiumCodes[code] === false){
-    // Mark code as used
-    premiumCodes[code] = true;
-    
-    // Unlock premium
-    localStorage.setItem("premiumUnlocked","yes");
+  if (validCodes.includes(code)) {
+    localStorage.setItem("premiumUnlocked", "yes");
     applyPremium();
-    updatePremiumUI(true);
-    
-    alert("🎉 Premium unlocked via your code!");
+    alert("🎉 Premium unlocked via code!");
     document.getElementById("codeInput").value = "";
-  } else if(premiumCodes[code] === true) {
-    alert("❌ This code has already been used.");
   } else {
     alert("❌ Invalid code. Please check with support.");
   }
 }
-
     // RUN ON LOAD
     applyPremium();
     applySkillToPremium();
