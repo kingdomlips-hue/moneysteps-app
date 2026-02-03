@@ -446,47 +446,40 @@ function updatePremiumUI(isUnlocked) {
       });
     }
 
-    // ======== Final Enter Code Function (One-time use per browser) ========
-let validCodes = ["USER001", "USER002", "MSTEPS2026" , "CEO1986"]; // Add all codes you want to allow
-let usedCodes = JSON.parse(localStorage.getItem("usedCodes")) || [];
+  function enterCode() {
+  const codeInput = document.getElementById("codeInput");
+  const code = codeInput.value.trim();
+  const usedCodes = JSON.parse(localStorage.getItem("usedCodes") || "[]");
 
-function enterCode() {
-  const code = document.getElementById("codeInput").value.trim();
+  // List of valid codes (you can add more)
+  const validCodes = ["USER001", "USER002", "MSTEPS2026"]; // Add all your codes here
 
   if (!code) {
     alert("❌ Please enter a code.");
     return;
   }
 
-  // Check if code is valid
   if (!validCodes.includes(code)) {
     alert("❌ Invalid code. Please check with support.");
     return;
   }
 
-  // Check if code has already been used
   if (usedCodes.includes(code)) {
-    alert("❌ This code has already been used.");
+    alert("⚠️ This code has already been used.");
     return;
   }
-
-  // Unlock premium
-  localStorage.setItem("premiumUnlocked", "yes");
-  applyPremium();
-  alert("🎉 Premium unlocked via code!");
 
   // Mark code as used
   usedCodes.push(code);
   localStorage.setItem("usedCodes", JSON.stringify(usedCodes));
 
-  // Remove code from validCodes to prevent re-use
-  validCodes = validCodes.filter(c => c !== code);
+  // Unlock premium
+  localStorage.setItem("premiumUnlocked", "yes");
+  updatePremiumUI(true);
 
-  // Clear input
-  document.getElementById("codeInput").value = "";
-}
-}
-    
+  alert("🎉 Premium unlocked via code!");
+  codeInput.value = "";
+}  
     // RUN ON LOAD
     applyPremium();
     applySkillToPremium();
