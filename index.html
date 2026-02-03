@@ -392,7 +392,18 @@ Tip: Write it down. Keep a mini-journal of actions and results.
       const waLink = "https://wa.me/2347039521202?text=I%20want%20to%20unlock%20MoneySteps%20Premium";
       window.open(waLink, "_blank");
     }
+function updatePremiumUI(isUnlocked) {
+  const notice = document.getElementById("premiumNotice");
+  const premiumContent = document.getElementById("premiumContent");
 
+  if (isUnlocked) {
+    if (notice) notice.style.display = "none";
+    if (premiumContent) premiumContent.style.display = "block";
+  } else {
+    if (notice) notice.style.display = "block";
+    if (premiumContent) premiumContent.style.display = "none";
+  }
+}
     function applyPremium() {
       const premiumContent = document.getElementById("premiumContent");
       const premiumBox = document.getElementById("premiumBox");
