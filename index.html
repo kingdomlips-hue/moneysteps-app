@@ -447,16 +447,25 @@ function updatePremiumUI(isUnlocked) {
     }
 
     function enterCode(){
-      const code = document.getElementById("codeInput").value.trim();
-      if(code === defaultCode){
-        localStorage.setItem("premiumUnlocked","yes");
-        applyPremium();
-        alert("🎉 Premium unlocked via code!");
-        document.getElementById("codeInput").value = "";
-      } else {
-        alert("❌ Invalid code. Please check with support.");
-      }
-    }
+  const code = document.getElementById("codeInput").value.trim();
+
+  if(premiumCodes[code] === false){
+    // Mark code as used
+    premiumCodes[code] = true;
+    
+    // Unlock premium
+    localStorage.setItem("premiumUnlocked","yes");
+    applyPremium();
+    updatePremiumUI(true);
+    
+    alert("🎉 Premium unlocked via your code!");
+    document.getElementById("codeInput").value = "";
+  } else if(premiumCodes[code] === true) {
+    alert("❌ This code has already been used.");
+  } else {
+    alert("❌ Invalid code. Please check with support.");
+  }
+}
 
     // RUN ON LOAD
     applyPremium();
