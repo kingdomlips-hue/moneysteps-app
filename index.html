@@ -355,7 +355,7 @@ Tip: Write it down. Keep a mini-journal of actions and results.
       </div>
 
     </div>
-<!-- DAILY MONEYSTEPS GUIDE (Premium Content Starts Here) -->
+    <!-- DAILY MONEYSTEPS GUIDE (Premium Content) -->
 <div id="dailyGuide" style="display:none;">
 
   <!-- Day 1 -->
@@ -422,44 +422,52 @@ Tip: Write it down. Keep a mini-journal of actions and results.
   </div>
 
 </div>
-    <script>
-// DAILY MONEYSTEPS GUIDE – UNLOCK ONE DAY AT A TIME
-
+    
+<script>
+// DAILY MONEYSTEPS GUIDE – ONE DAY AT A TIME
 document.addEventListener("DOMContentLoaded", function() {
+
   const dailyGuide = document.getElementById("dailyGuide");
   if (!dailyGuide) return;
 
   const days = dailyGuide.querySelectorAll(".card"); // Each card = one daily step
-  const today = new Date().setHours(0,0,0,0); // normalize today's date
+  const today = new Date().setHours(0,0,0,0); // normalize today
   const storageKey = "dailyStepProgress";
 
-  // Load progress from localStorage
+  // Load progress or initialize if not present
   let progress = JSON.parse(localStorage.getItem(storageKey)) || {
-    unlockDate: today,   // First day unlocked
-    lastDayUnlocked: 0  // No day shown yet
+    unlockDate: today,   // Day 1 starts today
+    lastDayUnlocked: 0   // no day unlocked yet
   };
-// Ensure at least Day 1 shows if premium is unlocked
-const premiumUnlocked = true; // Replace with your actual check if needed
-if (premiumUnlocked && progress.lastDayUnlocked === 0) {
-    progress.lastDayUnlocked = 1; // unlock Day 1
-    localStorage.setItem(storageKey, JSON.stringify(progress));
-}
-  // Calculate how many days have passed since initial unlock
-  const daysSinceUnlock = Math.floor((today - progress.unlockDate) / (1000 * 60 * 60 * 24));
-  const dayToShow = Math.min(daysSinceUnlock + 1, days.length); // Current day to reveal
 
-  // Reveal the days up to today
+  // Force Day 1 to appear immediately if premium unlocked and no day yet
+  const premiumUnlocked = true; // replace with your actual check if needed
+  if (premiumUnlocked && progress.lastDayUnlocked === 0) {
+    progress.lastDayUnlocked = 1;
+    localStorage.setItem(storageKey, JSON.stringify(progress));
+  }
+
+  // Calculate days passed since unlock date
+  const daysPassed = Math.floor((today - progress.unlockDate) / (1000 * 60 * 60 * 24));
+  const dayToShow = Math.min(progress.lastDayUnlocked + daysPassed, days.length);
+
+  // Show all days up to today
   days.forEach((card, index) => {
     card.style.display = (index < dayToShow) ? "block" : "none";
   });
 
-  // Save updated progress if a new day is unlocked
+  // Update progress
   if (dayToShow > progress.lastDayUnlocked) {
     progress.lastDayUnlocked = dayToShow;
     localStorage.setItem(storageKey, JSON.stringify(progress));
   }
+
+  // Reveal the container
+  dailyGuide.style.display = "block";
+
 });
 </script>
+  
     <!-- PREMIUM BOX -->
     <div class="card premium-box" id="premiumBox">
       <h3>🔒 Premium Access</h3>
