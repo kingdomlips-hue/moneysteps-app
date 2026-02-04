@@ -438,7 +438,12 @@ document.addEventListener("DOMContentLoaded", function() {
     unlockDate: today,   // First day unlocked
     lastDayUnlocked: 0  // No day shown yet
   };
-
+// Ensure at least Day 1 shows if premium is unlocked
+const premiumUnlocked = true; // Replace with your actual check if needed
+if (premiumUnlocked && progress.lastDayUnlocked === 0) {
+    progress.lastDayUnlocked = 1; // unlock Day 1
+    localStorage.setItem(storageKey, JSON.stringify(progress));
+}
   // Calculate how many days have passed since initial unlock
   const daysSinceUnlock = Math.floor((today - progress.unlockDate) / (1000 * 60 * 60 * 24));
   const dayToShow = Math.min(daysSinceUnlock + 1, days.length); // Current day to reveal
