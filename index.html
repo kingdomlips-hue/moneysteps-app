@@ -428,54 +428,46 @@ Tip: Write it down. Keep a mini-journal of actions and results.
 
     <script>
 // DAILY MONEYSTEPS GUIDE – ONE DAY AT A TIME (Premium Only)
-document.addEventListener("DOMContentLoaded", function() {
+function showDailyGuide() {
 
   const dailyGuide = document.getElementById("dailyGuide");
   if (!dailyGuide) return;
 
-  // PREMIUM CHECK – REPLACE WITH YOUR APP'S LOGIC
-  const isPremiumUnlocked = window.premiumUnlocked || false; // true if user unlocked premium
-
+  const isPremiumUnlocked = localStorage.getItem("premiumUnlocked") === "yes";
   if (!isPremiumUnlocked) {
-    dailyGuide.style.display = "none"; // hide daily guide if premium is locked
+    dailyGuide.style.display = "none";
     return;
   }
 
   const days = dailyGuide.querySelectorAll(".card");
-  const today = new Date().setHours(0,0,0,0); 
+  const today = new Date().setHours(0,0,0,0);
   const storageKey = "dailyStepProgress";
 
-  // Load progress or initialize
   let progress = JSON.parse(localStorage.getItem(storageKey)) || {
-    unlockDate: today,   // first day unlocked today
+    unlockDate: today,
     lastDayUnlocked: 0
   };
 
-  // Ensure Day 1 shows immediately after premium unlock
   if (progress.lastDayUnlocked === 0) {
     progress.lastDayUnlocked = 1;
     localStorage.setItem(storageKey, JSON.stringify(progress));
   }
 
-  // Calculate days passed since unlock
   const daysPassed = Math.floor((today - progress.unlockDate) / (1000 * 60 * 60 * 24));
   const dayToShow = Math.min(progress.lastDayUnlocked + daysPassed, days.length);
 
-  // Show all days up to today
   days.forEach((card, index) => {
     card.style.display = (index < dayToShow) ? "block" : "none";
   });
 
-  // Update progress
   if (dayToShow > progress.lastDayUnlocked) {
     progress.lastDayUnlocked = dayToShow;
     localStorage.setItem(storageKey, JSON.stringify(progress));
   }
 
-  // Reveal the container
   dailyGuide.style.display = "block";
+}
 
-});
 </script>
     
     <!-- PREMIUM BOX -->
