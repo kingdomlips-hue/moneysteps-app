@@ -581,7 +581,9 @@ updatePremiumUI(localStorage.getItem("premiumUnlocked") === "yes");
     if (!localStorage.getItem("hasVisited")) {
       alert("👋 Welcome to MoneySteps!\n\nStart at Step 1.\nDo one step per day.\nDon't rush.\n\nSticking to this is already a success.");
       localStorage.setItem("hasVisited", "yes");
+      showDailyGuide();
     }
+
   </script>
 
 </body>
