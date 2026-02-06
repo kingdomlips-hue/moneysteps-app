@@ -572,7 +572,7 @@ if (!isPremiumUnlocked) return;
   };
 
   
-  cards.forEach((card, index) => {
+  const cards = dailyGuide.querySelectorAll(".card");
   // index 0 = Day 1 (always show after premium unlock)
   if (index === 0) {
     card.style.display = "block";
