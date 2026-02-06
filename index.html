@@ -583,10 +583,7 @@ function showDailyGuide() {
     card.style.display = (index < dayToShow) ? "block" : "none";
   });
 
-  if (dayToShow > progress.lastDayUnlocked) {
-    progress.lastDayUnlocked = dayToShow;
-    localStorage.setItem(storageKey, JSON.stringify(progress));
-  }
+
 
   dailyGuide.style.display = "block";
 }
