@@ -579,9 +579,10 @@ function showDailyGuide() {
   const daysPassed = Math.floor((today - progress.unlockDate) / (1000 * 60 * 60 * 24));
   const dayToShow = Math.min(progress.lastDayUnlocked + daysPassed, days.length);
 
-  days.forEach((card, index) => {
-    card.style.display = (index < dayToShow) ? "block" : "none";
-  });
+  cards.forEach((card, index) => {
+  card.style.display =
+    (index <= progress.lastDayUnlocked) ? "block" : "none";
+});
 
 
 
