@@ -572,10 +572,6 @@ if (!isPremiumUnlocked) return;
   };
 
   
-
-  const daysPassed = Math.floor((today - progress.unlockDate) / (1000 * 60 * 60 * 24));
-  const dayToShow = Math.min(progress.lastDayUnlocked + daysPassed, days.length);
-
   cards.forEach((card, index) => {
   // index 0 = Day 1 (always show after premium unlock)
   if (index === 0) {
