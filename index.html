@@ -560,10 +560,7 @@ function showDailyGuide() {
   if (!dailyGuide) return;
 
   const isPremiumUnlocked = localStorage.getItem("premiumUnlocked") === "yes";
-  if (!isPremiumUnlocked) {
-    dailyGuide.style.display = "none";
-    return;
-  }
+if (!isPremiumUnlocked) return;
 
   const days = dailyGuide.querySelectorAll(".card");
   const today = new Date().setHours(0,0,0,0);
@@ -574,17 +571,19 @@ function showDailyGuide() {
     lastDayUnlocked: 0
   };
 
-  if (progress.lastDayUnlocked === 0) {
-    progress.lastDayUnlocked = 1;
-    localStorage.setItem(storageKey, JSON.stringify(progress));
-  }
+  
 
   const daysPassed = Math.floor((today - progress.unlockDate) / (1000 * 60 * 60 * 24));
   const dayToShow = Math.min(progress.lastDayUnlocked + daysPassed, days.length);
 
   cards.forEach((card, index) => {
-  card.style.display =
-    (index <= progress.lastDayUnlocked) ? "block" : "none";
+  // index 0 = Day 1 (always show after premium unlock)
+  if (index === 0) {
+    card.style.display = "block";
+  } else {
+    card.style.display =
+      (index <= progress.lastDayUnlocked) ? "block" : "none";
+  }
 });
 
 
