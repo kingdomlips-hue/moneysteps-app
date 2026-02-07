@@ -759,8 +759,9 @@ if (localStorage.getItem("premiumUnlocked") === "yes") {
 
 // First visit message
 if (!localStorage.getItem("hasVisited")) {
-  alert("👋 Welcome to MoneySteps!\n\nStart at Step 1. Do one step daily.");
+ alert("👋 Welcome to MoneySteps!\n\nStart at Step 1.\nDo one step per day.\nDon't rush.\n\nSticking to this is already a success.");
   localStorage.setItem("hasVisited", "yes");
+  if (!localStorage.getItem("hasVisited")) { 
 }
     
   </script>
