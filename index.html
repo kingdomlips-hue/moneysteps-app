@@ -676,6 +676,7 @@ showDailyGuide();
   const code = document.getElementById("codeInput").value.trim();
   if (validCodes.includes(code)) {
     localStorage.setItem("premiumUnlocked", "yes");
+    localStorage.setItem("premiumUnlockTime", Date.now());
     applyPremium();
     alert("🎉 Premium unlocked via code!");
     document.getElementById("codeInput").value = "";
