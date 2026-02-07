@@ -418,7 +418,6 @@ function showDailyGuide() {
 
   dailyGuide.style.display = "block";
 
-  // Get unlock time
   const unlockTime = parseInt(localStorage.getItem("premiumUnlockTime"));
   if (!unlockTime) return;
 
@@ -429,8 +428,11 @@ function showDailyGuide() {
 
   const cards = dailyGuide.querySelectorAll(".card");
 
+  const maxDays = cards.length - 1;
+  const safeDays = Math.min(daysPassed, maxDays);
+
   cards.forEach((card, index) => {
-    if (index <= daysPassed) {
+    if (index <= safeDays) {
       card.style.display = "block";
     } else {
       card.style.display = "none";
