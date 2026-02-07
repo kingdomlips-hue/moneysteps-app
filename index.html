@@ -741,11 +741,15 @@ showNextUnlockTimer();
   }
     }
     
-  setInterval(showNextUnlockTimer, 1000);
-    
-    // RUN ON LOAD
+setInterval(showNextUnlockTimer, 1000);
+
+// ================= RUN ON LOAD =================
+
+// Apply premium status
 applyPremium();
 applySkillToPremium();
+
+// Update UI lock state
 updatePremiumUI(localStorage.getItem("premiumUnlocked") === "yes");
 
 // Show daily guide ONLY if premium unlocked
@@ -758,6 +762,7 @@ if (!localStorage.getItem("hasVisited")) {
   alert("👋 Welcome to MoneySteps!\n\nStart at Step 1. Do one step daily.");
   localStorage.setItem("hasVisited", "yes");
 }
+    
 <script>
       
 </body>
