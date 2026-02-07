@@ -558,23 +558,25 @@ function showDailyGuide() {
   const dailyGuide = document.getElementById("dailyGuide");
   if (!dailyGuide) return;
 
-  // Only show if premium is unlocked
   if (localStorage.getItem("premiumUnlocked") !== "yes") return;
 
   dailyGuide.style.display = "block";
 
-  const storageKey = "dailyStepProgress";
-  const progress = JSON.parse(localStorage.getItem(storageKey)) || {
-    lastDayUnlocked: 0
-  };
+  const unlockTime = parseInt(localStorage.getItem("premiumUnlockTime"));
+  if (!unlockTime) return;
+
+  const now = Date.now();
+  const dayLength = 24 * 60 * 60 * 1000; // 24 hours
+
+  const daysPassed = Math.floor((now - unlockTime) / dayLength);
 
   const cards = dailyGuide.querySelectorAll(".card");
 
   cards.forEach((card, index) => {
-    if (index === 0) {
-      card.style.display = "block"; // Day 1 always visible
+    if (index <= daysPassed) {
+      card.style.display = "block";
     } else {
-      card.style.display = (index <= progress.lastDayUnlocked) ? "block" : "none";
+      card.style.display = "none";
     }
   });
 }
