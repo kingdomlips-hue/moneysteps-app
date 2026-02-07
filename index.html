@@ -407,15 +407,17 @@ Tip: Write it down. Keep a mini-journal of actions and results.
 </div>
                              
   <script>
-// DAILY MONEYSTEPS GUIDE – ONE DAY AT A TIME (Premium Only)
+// DAILY MONEYSTEPS GUIDE - REAL 24HR UNLOCK
 function showDailyGuide() {
   const dailyGuide = document.getElementById("dailyGuide");
   if (!dailyGuide) return;
 
+  // Only show if premium unlocked
   if (localStorage.getItem("premiumUnlocked") !== "yes") return;
 
   dailyGuide.style.display = "block";
 
+  // Get unlock time
   const unlockTime = parseInt(localStorage.getItem("premiumUnlockTime"));
   if (!unlockTime) return;
 
@@ -434,7 +436,7 @@ function showDailyGuide() {
     }
   });
 }
-
+  
   </script>
     <!-- PREMIUM BOX -->
     <div class="card premium-box" id="premiumBox">
