@@ -555,34 +555,28 @@ Tip: Write it down. Keep a mini-journal of actions and results.
   <script>
 // DAILY MONEYSTEPS GUIDE – ONE DAY AT A TIME (Premium Only)
 function showDailyGuide() {
-
   const dailyGuide = document.getElementById("dailyGuide");
   if (!dailyGuide) return;
 
-  const isPremiumUnlocked = localStorage.getItem("premiumUnlocked") === "yes";
-if (!isPremiumUnlocked) return;
+  // Only show if premium is unlocked
+  if (localStorage.getItem("premiumUnlocked") !== "yes") return;
 
-  const days = dailyGuide.querySelectorAll(".card");
-  const today = new Date().setHours(0,0,0,0);
+  dailyGuide.style.display = "block";
+
   const storageKey = "dailyStepProgress";
-
-  let progress = JSON.parse(localStorage.getItem(storageKey)) || {
-    unlockDate: today,
+  const progress = JSON.parse(localStorage.getItem(storageKey)) || {
     lastDayUnlocked: 0
   };
 
-  
   const cards = dailyGuide.querySelectorAll(".card");
-  // index 0 = Day 1 (always show after premium unlock)
-  if (index === 0) {
-    card.style.display = "block";
-  } else {
-    card.style.display =
-      (index <= progress.lastDayUnlocked) ? "block" : "none";
-  }
-});
 
-  
+  cards.forEach((card, index) => {
+    if (index === 0) {
+      card.style.display = "block"; // Day 1 always visible
+    } else {
+      card.style.display = (index <= progress.lastDayUnlocked) ? "block" : "none";
+    }
+  });
 }
 
   </script>
