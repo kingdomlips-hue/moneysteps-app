@@ -686,18 +686,6 @@ showDailyGuide();
     alert("❌ Invalid code. Please check with support.");
   }
     }
-    function completeDay(dayNumber) {
-  const progress = JSON.parse(localStorage.getItem(storageKey)) || {
-    lastDayUnlocked: 0
-  };
-
-  if (dayNumber === progress.lastDayUnlocked + 1) {
-    progress.lastDayUnlocked = dayNumber;
-    localStorage.setItem(storageKey, JSON.stringify(progress));
-    alert("✅ Day completed! Next day unlocked.");
-    location.reload();
-  }
-}
     
     // RUN ON LOAD
     applyPremium();
