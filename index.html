@@ -442,6 +442,37 @@ function showDailyGuide() {
   });
 }
 
+  function showNextUnlockTimer() {
+  const timerBox = document.getElementById("nextUnlockTimer");
+  if (!timerBox) return;
+
+  if (localStorage.getItem("premiumUnlocked") !== "yes") {
+    timerBox.style.display = "none";
+    return;
+  }
+
+  const unlockTime = parseInt(localStorage.getItem("premiumUnlockTime"));
+  if (!unlockTime) return;
+
+  const dayLength = 24 * 60 * 60 * 1000;
+  const now = Date.now();
+  const daysPassed = Math.floor((now - unlockTime) / dayLength);
+
+  const nextUnlockTime = unlockTime + (daysPassed + 1) * dayLength;
+  const diff = nextUnlockTime - now;
+
+  if (diff <= 0) {
+    timerBox.innerText = "✅ New guide unlocked!";
+    return;
+  }
+
+  const hours = Math.floor(diff / (1000 * 60 * 60));
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+
+  timerBox.innerText = `⏳ Next guide unlocks in ${hours}h ${minutes}m ${seconds}s`;
+}
+    
   </script>
     <!-- PREMIUM BOX -->
     <div class="card premium-box" id="premiumBox">
