@@ -699,7 +699,7 @@ function updatePremiumUI(isUnlocked) {
       if(localStorage.getItem("premiumUnlocked") === "yes"){
         premiumContent.style.display = "block";
         premiumContent.classList.remove("locked");
-        document.getElementById("premiumStatus").innerText = "✅ Premium Active: Premium Content available";
+        document.getElementById("premiumStatus").innerText = "✅ Premium Active: Premium Content Unlocked";
         const btn = document.getElementById("unlockBtn");
         btn.innerText = "✅ Premium Active";
         btn.disabled = true;
