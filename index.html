@@ -665,7 +665,7 @@ function showDailyGuide() {
   </footer>
 
   <script>
-  const validCodes = ["", "", "" , ""];
+  const validCodes = ["", "", "CEO86" , ""];
 // === ADMIN-GENERATED CODES ===
 // Store codes here. Each code can be used only once.
 // Format: { "CODE123": false, "CODE456": false }
@@ -734,7 +734,7 @@ showNextUnlockTimer();
     localStorage.setItem("premiumUnlocked", "yes");
     localStorage.setItem("premiumUnlockTime", Date.now());
     applyPremium();
-    alert("🎉 Premium unlocked via code!");
+    alert("🎉 Premium unlocked! Please message 'UNLOCKED' on WhatsApp.");
     document.getElementById("codeInput").value = "";
   } else {
     alert("❌ Invalid code. Please check with support.");
