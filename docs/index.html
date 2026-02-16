@@ -671,7 +671,7 @@ function showDailyGuide() {
   </footer>
 
   <script>
-  const validCodes = ["MS2026", "", "" , ""];
+  const validCodes = ["MS2026"]; ["CEO1986"];
 // === ADMIN-GENERATED CODES ===
 // Store codes here. Each code can be used only once.
 // Format: { "CODE123": false, "CODE456": false }
@@ -736,11 +736,15 @@ showNextUnlockTimer();
 
   function enterCode() {
   const code = document.getElementById("codeInput").value.trim();
+    if (code === " ") {
+    alert("Please enter a code.");
+      return;
+     }
   if (validCodes.includes(code)) {
     localStorage.setItem("premiumUnlocked", "yes");
     localStorage.setItem("premiumUnlockTime", Date.now());
     applyPremium();
-    alert("🎉 Premium unlocked! Please message 'UNLOCKED' on WhatsApp.");
+    alert("🎉 Builder Program Unlocked! Please message 'UNLOCKED' on WhatsApp.");
     document.getElementById("codeInput").value = "";
   } else {
     alert("❌ Invalid code. Please check with support.");
