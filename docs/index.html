@@ -705,9 +705,9 @@ function updatePremiumUI(isUnlocked) {
       if(localStorage.getItem("premiumUnlocked") === "yes"){
         premiumContent.style.display = "block";
         premiumContent.classList.remove("locked");
-        document.getElementById("premiumStatus").innerText = "✅ Premium Active: Premium Content Unlocked";
+        document.getElementById("premiumStatus").innerText = "✅ Builder Program Active: Builder Access Unlocked";
         const btn = document.getElementById("unlockBtn");
-        btn.innerText = "✅ Premium Active";
+        btn.innerText = "✅ Builder Program Active";
         btn.disabled = true;
         codeSection.style.display = "none";
         updatePremiumUI(true);
