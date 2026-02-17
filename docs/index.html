@@ -724,13 +724,16 @@ const premiumCodes = {
 function updatePremiumUI(isUnlocked) {
   const notice = document.getElementById("premiumNotice");
   const premiumContent = document.getElementById("premiumContent");
+  const founderNotice = document.getElementById("founderNotice");
 
   if (isUnlocked) {
     if (notice) notice.style.display = "none";
     if (premiumContent) premiumContent.style.display = "block";
+    if (founderNotice) founderNotice.style.display = "none";   // ✅ Hide Founder Notice
   } else {
     if (notice) notice.style.display = "block";
     if (premiumContent) premiumContent.style.display = "none";
+    if (founderNotice) founderNotice.style.display = "block";  // ✅ Show Founder Notice
   }
 }
     function applyPremium() {
