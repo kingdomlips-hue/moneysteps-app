@@ -606,7 +606,7 @@ Tip: Write it down. Keep a mini-journal of actions and results.
   <!-- Day 8 -->
 <div class="card">
   <h3>MoneySteps Guide Day 8: Your Feedback</h3>
-  <p><strong>Feedback</strong><br> Comment ‘Week 1 Done’ to begin the MoneySteps Builder Series.</p>
+  <p><strong>Feedback</strong><br> Comment ‘Week 1 Done’ to begin the MoneySteps Wealth series.</p>
 </div>
 
 </div>
@@ -680,10 +680,10 @@ function showDailyGuide() {
     <!-- PREMIUM BOX -->
     <div class="card premium-box" id="premiumBox">
       <h3>🔒 Builder Access</h3>
-      <p id="premiumStatus">MoneySteps Builder Program is locked — ₦3,000 one-time access</p>
-      <button id="unlockBtn" onclick="unlockPremium()">Unlock Buider Access – ₦3,000</button>
+      <p id="premiumStatus"MoneySteps Builder Program 1— ₦3,000 one-time access</p>
+      <button id="unlockBtn" onclick="unlockPremium()">Unlock Income Activation– ₦3,000</button>
       <div id="codeSection" style="margin-top:10px;">
-        <label for="codeInput"><strong>Enter code if you have one:</strong></label><br>
+        <label for="codeInput"><strong>Enter Code:</strong></label><br>
         <input type="text" id="codeInput" placeholder="Enter your access code" style="width:100%; padding:8px; margin-top:5px;" />
         <button onclick="enterCode()">Submit Code</button>
       </div>
@@ -744,9 +744,9 @@ function updatePremiumUI(isUnlocked) {
       if(localStorage.getItem("premiumUnlocked") === "yes"){
         premiumContent.style.display = "block";
         premiumContent.classList.remove("locked");
-        document.getElementById("premiumStatus").innerText = "✅ Builder Program Active: Builder Access Unlocked";
+        document.getElementById("premiumStatus").innerText = "✅ Builder Program 1 Active: Income Activation Unlocked";
         const btn = document.getElementById("unlockBtn");
-        btn.innerText = "✅ Builder Program Active";
+        btn.innerText = "✅ Income Activation Active";
         btn.disabled = true;
         codeSection.style.display = "none";
         updatePremiumUI(true);
@@ -783,7 +783,7 @@ showNextUnlockTimer();
     localStorage.setItem("premiumUnlocked", "yes");
     localStorage.setItem("premiumUnlockTime", Date.now());
     applyPremium();
-    alert("🎉 Builder Program Unlocked! Please message 'UNLOCKED' on WhatsApp.");
+    alert("🎉 Builder Program 1 Unlocked! Please message 'UNLOCKED' on WhatsApp.");
     document.getElementById("codeInput").value = "";
   } else {
     alert("❌ Invalid code. Please check with support.");
