@@ -758,25 +758,37 @@ function updatePremiumUI(isUnlocked) {
     if (founderNotice) founderNotice.style.display = "block";  // ✅ Show Founder Notice
   }
 }
-    function applyPremium() {
-      const premiumContent = document.getElementById("premiumContent");
-      const premiumBox = document.getElementById("premiumBox");
-      const codeSection = document.getElementById("codeSection");
+function applyPremium() {
+  const premiumContent = document.getElementById("premiumContent");
+  const premiumBox = document.getElementById("premiumBox");
+  const codeSection = document.getElementById("codeSection");
+  const intlNotice = document.getElementById("intlNotice");
 
-      if(localStorage.getItem("premiumUnlocked") === "yes"){
-        premiumContent.style.display = "block";
-        premiumContent.classList.remove("locked");
-        document.getElementById("premiumStatus").innerText = "✅ Builder Program Active: Builder Access Unlocked";
-        const btn = document.getElementById("unlockBtn");
-        btn.innerText = "✅ Builder Program Active";
-        btn.disabled = true;
-        codeSection.style.display = "none";
-        updatePremiumUI(true);
-        // Show the Daily MoneySteps Guide immediately
-showDailyGuide();
-showNextUnlockTimer();    
-      }
+  if(localStorage.getItem("premiumUnlocked") === "yes"){
+    premiumContent.style.display = "block";
+    premiumContent.classList.remove("locked");
+
+    document.getElementById("premiumStatus").innerText = 
+      "✅ Builder Program Active: Builder Access Unlocked";
+
+    const btn = document.getElementById("unlockBtn");
+    btn.innerText = "✅ Builder Program Active";
+    btn.disabled = true;
+
+    codeSection.style.display = "none";
+
+    // ✅ Hide WhatsApp notice after unlock
+    if (intlNotice) {
+      intlNotice.style.display = "none";
     }
+
+    updatePremiumUI(true);
+
+    // Show the Daily MoneySteps Guide immediately
+    showDailyGuide();
+    showNextUnlockTimer();    
+  }
+}
 
     function saveSkill() {
       const skill = document.getElementById("skillInput").value;
